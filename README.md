@@ -2,7 +2,7 @@
 
 ## Team members
 
-Please replace this text with names of who worked on this miniproject.
+Ahmed, Flo, and Gabby
 
 ## Miniproject descripton
 

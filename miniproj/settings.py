@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,13 +27,16 @@ SECRET_KEY = 'django-insecure-4!)b1+a5w9w*iy^q01_kz^kjyx(+!xir9f!ll)uj$%r-7!f-&l
 DEBUG = True
 
 # repl.it happiness
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'https://cosc140-miniproj-ahmedflogabby.ahmedkamran.repl.co']
 X_FRAME_OPTIONS = '*'
 
+
+CSRF_TRUSTED_ORIGINS = ['https://cosc140-miniproj-ahmedflogabby.ahmedkamran.repl.co']
 
 # Application definition
 
 INSTALLED_APPS = [
+		'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,3 +129,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

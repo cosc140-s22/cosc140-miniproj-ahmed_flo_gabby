@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="dark">
+        <div class="container py-4">
+          <h1 class="h1 text-center" id="pageHeaderTitle">  
+						<a href="{% url 'index' %}" class="text-decoration-none"> 
+							<span style="color:#bd150b">Croeso</span>
+							<span style="color:#ffffff">i</span>
+							<span style="color:#79dd09">Cymru</span>
+						</a> 
+					</h1>
+					{% for site,color in sites %}
+					 <article class="postcard dark {{color}}">
+            <a class="postcard__img_link" href="#">
+							{% with img=site.random_img %}
+							{% if img %}
+              <img
+                class="postcard__img"
+                src="{{img.image.url}}"
+                alt="{{img.caption}}"
+              />
+							{% endif %}
+							{% endwith %}
+            </a>
+            <div class="postcard__text">
+              <h1 class="postcard__title blue">
+                <a href="#">{{site.title}}</a>
+              </h1>
+              <div class="postcard__subtitle small">
+                <time datetime="2020-05-25 12:00:00">
+                  <i class="fas fa-calendar-alt mr-2"></i>{{site.location}}
+                </time>
+              </div>
+              <div class="postcard__bar"></div>
+              <div class="postcard__preview-txt">
+                {{site.description}}
+              </div>
+							{% with tags=site.get_tags%}
+							{% if tags %}
+							<ul class="postcard__tagbox">
+								{% for tag in tags %}
+								<li class="tag__item">
+									<a href="{% url 'index' %}?tag={{tag.name}}">
+                  <i class="fas fa-tag mr-2"></i>{{tag.name}}
+										</a>
+                </li>
+								{% endfor %}
+							</ul>
+							{% endif %}
+							{% endwith %}
+            </div>
+          </article>
+					{% endfor %}
+        </div>
+      </section>
+{% endblock %}

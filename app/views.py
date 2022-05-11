@@ -1,0 +1,10 @@
+from django.shortcuts import render
+from .models import Site
+
+# Create your views here.
+def index(request):
+	sites = Site.objects.all().order_by('title')	
+	colors = [['red','green','blue','yellow'][i%4] for i in range(len(sites))]
+	if(request.GET.get('tag')):
+		sites = sites.filter(tags__name=request.GET.get('tag'))
+	return render(request, 'app/index.html', context={"sites":zip(sites,colors)})

@@ -8,9 +8,30 @@
         <span style="color: #79dd09">Cymru</span>
       </a>
     </h1>
+    <div class="container" id="search-box">
+      <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-6">
+          <form class="form" action="{% url 'index' %}" method="get">
+            <input
+              type="text"
+              class="form-control form-input"
+              placeholder="Find a place in Wales. Use # to search by tags"
+              name="search"
+              required
+            />
+          </form>
+        </div>
+        <div class="col-md-1">
+          <button id="search" type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
     {% for site,color in sites %}
     <article class="postcard dark {{color}}" id="{{site.id}}">
       {% with img=site.random_img %} {% if img %}
+
       <a class="postcard__img_link" href="{{img.image.url}}">
         <img
           class="postcard__img"
@@ -18,32 +39,32 @@
           alt="{{img.caption}}"
         />
       </a>
+
       {% endif %} {% endwith %}
       <div class="postcard__text">
         <h1 class="postcard__title blue">
           <a href="{% url 'details' site.id %}">{{site.title}}</a>
         </h1>
         <div class="postcard__subtitle small">
-          <time datetime="2020-05-25 12:00:00">
-            <i class="fas fa-calendar-alt mr-2"></i>{{site.location}}
-          </time>
+          <time datetime="2020-05-25 12:00:00"> {{site.location}} </time>
         </div>
         <div class="postcard__bar"></div>
         <div class="postcard__preview-txt">{{site.description}}</div>
-        {% with tags=site.get_tags%} {% if tags %}
+        {% with tags=site.tags.all %} {% if tags.exists %}
         <ul class="postcard__tagbox">
           {% for tag in tags %}
-          <li class="tag__item">
-            <a href="{% url 'index' %}?tag={{tag.name}}">
-              <i class="fas fa-tag mr-2"></i>{{tag.name}}
-            </a>
+          <li class="tag__item blue play" id="{{tag.name}}">
+            <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
           </li>
           {% endfor %}
         </ul>
         {% endif %} {% endwith %}
       </div>
     </article>
+    {% empty %}
+    <h1 class="text-center">No items matched your search</h1>
     {% endfor %}
   </div>
 </section>
+<script src="{% static 'app/sites.js' %}"></script>
 {% endblock %}

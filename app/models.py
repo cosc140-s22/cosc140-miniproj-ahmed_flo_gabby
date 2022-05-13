@@ -4,9 +4,13 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 class Tag(models.Model):
-  name = models.CharField(blank=False, max_length=20)
-  def __str__(self):
-    return f"{self.name}"
+	name = models.CharField(blank=False, max_length=20)
+	
+	class Meta:
+		ordering = ["name"]
+	
+	def __str__(self):
+		return f"{self.name}"
 
 class Site(models.Model):
 	title = models.CharField(max_length = 1000, blank=False)
@@ -18,13 +22,6 @@ class Site(models.Model):
 		img_query = self.siteimage_set.all()
 		if(img_query.exists()):
 			return img_query.order_by("?")[0]
-		else:
-			None
-
-	def get_tags(self):
-		tag_query = self.tags.all()
-		if(tag_query.exists()):
-			return tag_query.order_by("name")
 		else:
 			None
 		

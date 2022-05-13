@@ -21,19 +21,9 @@ def index(request:HttpRequest):
 			return redirect(F"{reverse('index')}?tag={search_req[1:]}")
 		else:
 			'''
-				Searches by title first, description second, and then location last
+				Searches by title, desciption, and location
 			'''
-			filtered = sites.filter(title__icontains=search_req)
-			if(filtered.exists):
-				sites = filtered
-			else:
-				filtered = sites.filter(description__icontains=search_req)
-				if(filtered.exists()):
-					sites = filtered
-				else:
-					filtered = sites.filter(location__icontains=search_req)
-					if(filtered.exists()):
-						sites = filtered
+			sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 	
 	colors = [['red','green','blue','yellow'][i%4] for i in range(len(sites))]
 	

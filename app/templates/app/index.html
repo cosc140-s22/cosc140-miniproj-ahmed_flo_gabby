@@ -52,11 +52,15 @@
         <div class="postcard__preview-txt">{{site.description}}</div>
         {% with tags=site.tags.all %} {% if tags.exists %}
         <ul class="postcard__tagbox">
-          {% for tag in tags %}
+          {% for tag in tags %} {% if tag_req == tag.name %}
+          <li class="tag__item blue play selected" id="{{tag.name}}">
+            <a href="{% url 'index' %}"> {{tag.name}} </a>
+          </li>
+          {% else %}
           <li class="tag__item blue play" id="{{tag.name}}">
             <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
           </li>
-          {% endfor %}
+          {% endif %} {% endfor %}
         </ul>
         {% endif %} {% endwith %}
       </div>

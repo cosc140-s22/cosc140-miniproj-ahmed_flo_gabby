@@ -28,7 +28,8 @@ def index(request:HttpRequest):
 	colors = [['red','green','blue','yellow'][i%4] for i in range(len(sites))]
 	
 	context = {
-		"sites":zip(sites,colors)
+		"sites":zip(sites,colors),
+		"tag_req":tag_req
 	}
 	
 	return render(request, 'app/index.html', context)

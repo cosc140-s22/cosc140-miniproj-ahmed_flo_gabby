@@ -21,7 +21,7 @@ def index(request:HttpRequest):
 			return redirect(F"{reverse('index')}?tag={search_req[1:]}")
 		else:
 			'''
-				Searches by title, desciption, and location
+				Searches by title, description, and location
 			'''
 			sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 	

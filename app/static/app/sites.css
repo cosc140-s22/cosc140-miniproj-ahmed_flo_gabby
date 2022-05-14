@@ -239,6 +239,9 @@ a:hover {
 .postcard .postcard__tagbox .selected {
   background: #0076bd;
 }
+.postcard .postcard__tagbox .selected:hover {
+  background: #474648 !important;
+}
 
 .blue .postcard__title:hover {
   color: #0076bd;

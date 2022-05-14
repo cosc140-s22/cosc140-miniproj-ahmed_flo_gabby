@@ -232,15 +232,15 @@ a:hover {
   );
 }
 
-.postcard .postcard__tagbox .blue.play:hover {
+.postcard .postcard__tagbox .tag__item:hover {
   background: #0076bd;
 }
 
-.postcard .postcard__tagbox .selected {
+.postcard .postcard__tagbox .tag__item.selected {
   background: #0076bd;
 }
-.postcard .postcard__tagbox .selected:hover {
-  background: #474648 !important;
+.postcard .postcard__tagbox .tag__item.selected:hover {
+  background: #474648;
 }
 
 .blue .postcard__title:hover {

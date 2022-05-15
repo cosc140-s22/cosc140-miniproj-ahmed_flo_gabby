@@ -9,9 +9,9 @@ document.querySelectorAll("img").forEach((img) => {
     img.classList.add("w-dom");
   }
 });
-document.querySelector(".carousel-image").addEventListener("mouseover", (e) => {
-  document.querySelector(".carousel-caption").style.opacity = "0.1";
-});
-document.querySelector(".carousel-image").addEventListener("mouseout", (e) => {
-  document.querySelector(".carousel-caption").style.opacity = "1";
-});
+const hide = (id) => {
+  document.getElementById(id).style.opacity = 0;
+};
+const unhide = (id) => {
+  document.getElementById(id).style.opacity = 1;
+};

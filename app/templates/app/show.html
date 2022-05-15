@@ -30,8 +30,8 @@
                                 src="{{image.image.url}}" 
                                 class="mx-auto d-block carousel-image"
                                 alt="{{image.caption}}" 
-                                onmouseover='hide("{{image.id}}")' 
-                                onmouseleave='unhide("{{image.id}}")' 
+                                onmouseover='hide_caption("{{image.id}}")' 
+                                onmouseleave='show_caption("{{image.id}}")' 
                             />
                         </a>
                         <div class="carousel-caption d-none d-md-block" id="{{image.id}}">

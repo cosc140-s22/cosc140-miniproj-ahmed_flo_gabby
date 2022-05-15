@@ -4,14 +4,14 @@ document.querySelectorAll("img").forEach((img) => {
     h: img.naturalHeight,
   });
   if (img.naturalHeight > img.naturalWidth) {
-    img.classList.add("h-dom");
+    img.classList.add("portrait");
   } else {
-    img.classList.add("w-dom");
+    img.classList.add("landscape");
   }
 });
-const hide = (id) => {
+const hide_caption = (id) => {
   document.getElementById(id).style.opacity = 0;
 };
-const unhide = (id) => {
+const show_caption = (id) => {
   document.getElementById(id).style.opacity = 1;
 };

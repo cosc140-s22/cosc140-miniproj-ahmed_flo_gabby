@@ -1,0 +1,13 @@
+.carousel-image {
+  transition: all 0.5s;
+  filter: opacity(50%);
+}
+.w-dom {
+  max-width: 100vw;
+}
+.h-dom {
+  max-height: 100vh;
+}
+.carousel-image:hover {
+  filter: opacity(100%);
+}

@@ -1,8 +1,4 @@
 document.querySelectorAll("img").forEach((img) => {
-  console.log({
-    w: img.naturalWidth,
-    h: img.naturalHeight,
-  });
   if (img.naturalHeight > img.naturalWidth) {
     img.classList.add("portrait");
   } else {

@@ -1,15 +1,15 @@
 const data = {
-  titles: [],
-  tags: [],
+  titles: [...document.querySelectorAll(".site-title")].map((title) =>
+    title.textContent.trim().toLowerCase()
+  ),
+  tags: [...document.querySelectorAll(".tag-name")].map((tag) =>
+    tag.textContent.trim().toLowerCase()
+  ),
 };
-document.querySelectorAll(".site-title").forEach((title) => {
-  data.titles.push(title.textContent.trim().toLowerCase());
-});
 
-document.querySelectorAll(".tag-name").forEach((tag) => {
-  data.tags.push(tag.textContent.trim().toLowerCase());
-});
-
+/**
+ * @param {string} val
+ */
 const get_suggestions = (val) => {
   let suggested = [];
 
@@ -19,7 +19,7 @@ const get_suggestions = (val) => {
 
   let tags = data.tags
     .filter((tag) => {
-      return tag.includes(val.slice(1)) && val[0] === "#";
+      return tag.includes(val.slice(1)) && val.charAt(0) === "#";
     })
     .map((tag) => `#${tag}`);
 
@@ -32,6 +32,9 @@ const get_suggestions = (val) => {
   return suggested;
 };
 
+/**
+ * @param {Event} e
+ */
 const search_hover = (e) => {
   if (e.type === "mouseover") {
     e.currentTarget.classList.add("active");
@@ -41,12 +44,29 @@ const search_hover = (e) => {
   }
 };
 
+/**
+ * @param {Event} e
+ */
 const selected = (e) => {
   const val = e.currentTarget.textContent;
   document.getElementById("search-suggestions").innerHTML = "";
   document.getElementById("search-input").value = val;
 };
 
+/**
+ * @param {string} s
+ * @returns {string}
+ */
+const title_case = (s) => {
+  return s
+    .split(" ")
+    .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+    .join(" ");
+};
+
+/**
+ * @param {Event} e
+ */
 const searching = (e) => {
   const ul = document.getElementById("search-suggestions");
   const val = e.currentTarget.value.toLowerCase();
@@ -54,7 +74,7 @@ const searching = (e) => {
   if (val !== null && val.trim() !== "") {
     get_suggestions(val).forEach((s) => {
       const li = document.createElement("li");
-      li.appendChild(document.createTextNode(s));
+      li.appendChild(document.createTextNode(title_case(s)));
       li.classList.add("list-group-item", "suggested", "faded-out");
       li.addEventListener("mouseover", search_hover);
       li.addEventListener("mouseleave", search_hover);

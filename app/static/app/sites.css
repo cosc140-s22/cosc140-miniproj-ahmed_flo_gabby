@@ -401,3 +401,10 @@ a:hover {
 .suggested.faded-out {
   opacity: 0;
 }
+#search-suggestions {
+  max-height: 25vw;
+}
+#search-suggestions {
+  overflow: hidden;
+  overflow-y: scroll;
+}

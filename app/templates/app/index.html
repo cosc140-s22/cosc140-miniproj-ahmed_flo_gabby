@@ -9,10 +9,17 @@
       </a>
     </h1>
     <div class="container" id="search-box">
-      <form class="form" action="{% url 'index' %}" method="get">
+      <form
+        class="form"
+        action="{% url 'index' %}"
+        method="get"
+        autocomplete="off"
+      >
         <div class="row g-1">
           <div class="col-11">
             <input
+              id="search-input"
+              oninput="searching(event)"
               type="text"
               class="form-control form-input"
               placeholder="Search by keywords. Use # to search by tags"
@@ -33,6 +40,11 @@
           </div>
         </div>
       </form>
+      <div class="row g-1">
+        <div class="col-11">
+          <ul class="list-group" id="search-suggestions"></ul>
+        </div>
+      </div>
     </div>
     {% for site,color in sites %}
     <article class="postcard dark {{color}}" id="{{site.id}}">
@@ -49,22 +61,24 @@
       {% endif %} {% endwith %}
       <div class="postcard__text">
         <h1 class="postcard__title blue">
-          <a href="{% url 'details' site.id %}">{{site.title}}</a>
+          <a href="{% url 'details' site.id %}" class="site-title"
+            >{{site.title}}</a
+          >
         </h1>
-        <div class="postcard__subtitle small">
-          <time datetime="2020-05-25 12:00:00"> {{site.location}} </time>
-        </div>
+        <div class="postcard__subtitle small">{{site.location}}</div>
         <div class="postcard__bar"></div>
         <div class="postcard__preview-txt">{{site.description}}</div>
         {% with tags=site.tags.all %} {% if tags.exists %}
         <ul class="postcard__tagbox">
           {% for tag in tags %} {% if tag_req == tag.name %}
           <li class="tag__item selected" id="{{tag.name}}">
-            <a href="{% url 'index' %}"> {{tag.name}} </a>
+            <a href="{% url 'index' %}" class="tag-name"> {{tag.name}} </a>
           </li>
           {% else %}
           <li class="tag__item" id="{{tag.name}}">
-            <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
+            <a href="{% url 'index' %}?tag={{tag.name}}" class="tag-name">
+              {{tag.name}}
+            </a>
           </li>
           {% endif %} {% endfor %}
         </ul>
@@ -76,4 +90,5 @@
     {% endfor %}
   </div>
 </section>
+<script src="{% static 'app/sites.js' %}"></script>
 {% endblock %}

@@ -393,3 +393,11 @@ a:hover {
 #search-box {
   margin-bottom: 1em;
 }
+/* Opacity effect for when search suggestions pop up */
+.suggested {
+  transition: opacity 500ms;
+  will-change: opacity;
+}
+.suggested.faded-out {
+  opacity: 0;
+}

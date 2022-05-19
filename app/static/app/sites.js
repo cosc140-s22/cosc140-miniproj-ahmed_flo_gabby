@@ -11,8 +11,6 @@ const data = {
  * @param {string} val
  */
 const get_suggestions = (val) => {
-  let suggested = [];
-
   let titles = data.titles.filter((title) => {
     return title.includes(val);
   });
@@ -23,7 +21,8 @@ const get_suggestions = (val) => {
     })
     .map((tag) => `#${tag}`);
 
-  suggested = titles.concat(tags);
+  let suggested = [...titles, tags];
+
   suggested = suggested.filter((item, idx, self) => {
     return self.indexOf(item) === idx;
   });

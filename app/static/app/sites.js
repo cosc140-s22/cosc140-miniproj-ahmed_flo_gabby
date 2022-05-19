@@ -21,12 +21,7 @@ const get_suggestions = (val) => {
     })
     .map((tag) => `#${tag}`);
 
-  let suggested = [...titles, ...tags];
-
-  suggested = Array.from(new Set(suggested)); //Ensure suggestions are not repeated
-  suggested.sort();
-
-  return suggested;
+  return Array.from(new Set([...titles, ...tags])).sort(); //Ensure suggestions are not repeated and sorted
 };
 
 /**

@@ -21,7 +21,7 @@ const get_suggestions = (val) => {
     })
     .map((tag) => `#${tag}`);
 
-  let suggested = [...titles, tags];
+  let suggested = [...titles, ...tags];
 
   suggested = suggested.filter((item, idx, self) => {
     return self.indexOf(item) === idx;

@@ -23,9 +23,7 @@ const get_suggestions = (val) => {
 
   let suggested = [...titles, ...tags];
 
-  suggested = suggested.filter((item, idx, self) => {
-    return self.indexOf(item) === idx;
-  });
+  suggested = Array.from(new Set(suggested)); //Ensure suggestions are not repeated
   suggested.sort();
 
   return suggested;

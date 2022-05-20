@@ -2,6 +2,12 @@
   transition: all 0.5s;
   filter: opacity(50%);
 }
+.container{
+  display: inline-block;
+  vertical-align: middle;
+  max-height: 100%;
+  max-width: 100%;
+}
 .landscape {
   max-width: 100vw;
 }
@@ -33,7 +39,7 @@ th, td{
   cursor: pointer;
 }
 
-.btn:hover{
+.btn-outline-success:hover{
   background-color: #00C851;
 	color: white;
 }

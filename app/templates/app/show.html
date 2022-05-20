@@ -10,6 +10,8 @@
   <button type="button" class="btn btn-outline-success btn-lg btn-rounded"> Back to all sites </button>
 </a>
     <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
+    <h5 class="text-center">{{site.location}}</h5>
+    <p class="text-center">{{site.description}}</p>
     {% if images %}
     <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
       {% if images.count > 1 %}
@@ -43,7 +45,6 @@
           </a>
           <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
             <h5>{{image.caption}}</h5>
-            <p>{{image.site.description|truncatewords:10}}</p>
           </div>
         </div>
         {% endfor %} {% if images.count > 1 %}

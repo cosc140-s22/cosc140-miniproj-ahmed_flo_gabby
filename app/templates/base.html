@@ -31,19 +31,89 @@
       type="text/css"
       href="{% static 'app/sites.css' %}"
     />
+    <link rel="icon" type="image/x-icon" href="/media/images/favicon.ico">
     <title>Croeso i Cymru</title>
   </head>
   <body>
-    <div id="root">
-			 <div class="container">
-      {% if user.is_authenticated %}
-      Welcome, {{ user.username }}. <a class="btn btn-sm btn-danger btn-rounded" href="{% url 'logout' %}">Logout</a>
-      {% else %}
-      To review sites, please <a class="btn btn-sm btn-primary" href="{% url 'login' %}?next={{request.path}}">log in</a>.
-      {% endif %}
-      </div>
-			{% block content %} {% endblock %}
-		</div>
+        <div id="root">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <div class="head">
+            <h1 class="h1 text-start">
+              <a href="{% url 'index' %}" class="text-decoration-none">
+                <span style="color: #bd150b">Croeso</span>
+                <span style="color: #ffffff">i</span>
+                <span style="color: #79dd09">Cymru</span>
+              </a>
+            </h1>
+          </div>
+
+          <div class="pp">
+            <ul class="navbar-nav">
+              <!-- Avatar -->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle d-flex align-items-center"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    {%
+                    if
+                    user.is_authenticated
+                    %}
+                    src="https://avatars.dicebear.com/api/bottts/{{ user.username }}.svg"
+                    {%
+                    else
+                    %}
+                    src="https://avatars.dicebear.com/api/bottts/auth.svg"
+                    {%
+                    endif
+                    %}
+                    class="rounded-circle"
+                    height="30"
+                    alt="Initials of username"
+                    loading="lazy"
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    {% if user.is_authenticated %}
+                    <span class="dropdown-item"
+                      >Welcome {{ user.username }}</span
+                    >
+                    {% else %}
+                    <span class="dropdown-item"> Hello Stranger </span>
+                    {% endif %}
+                  </li>
+
+                  <li>
+                    {% if user.is_authenticated %}
+                    <a class="dropdown-item" href="{% url 'logout' %}"
+                      >Logout</a
+                    >
+                    {% else %}
+                    <a
+                      class="dropdown-item"
+                      href="{% url 'login' %}?next={{request.path}}"
+                      >Log In</a
+                    >
+                    {% endif %}
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      {% block content %} {% endblock %}
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

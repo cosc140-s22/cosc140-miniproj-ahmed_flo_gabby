@@ -409,3 +409,10 @@ a:hover {
   overflow-y: scroll;
 }
 
+.btn-danger:hover {
+  border-style: solid;
+  border-width: medium;
+  background-color: transparent;
+  border-color: #ff4444;
+  color: #ff4444;
+}

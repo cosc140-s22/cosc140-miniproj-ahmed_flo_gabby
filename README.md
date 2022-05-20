@@ -6,10 +6,20 @@ Ahmed, Flo, and Gabby
 
 ## Miniproject descripton
 
-Please replace this text with a brief overview of what you've done for your miniproject.
+    ### Cool Features
+     - Suggestions on searchbar on home page
+     - Hashtag suggestions if you press # on the search bar
+     - Little dragon favicon on browser tab
+     - Randomly generated unique profile pictures on navbar
+     - Sliding Gallery Carousel on detail page
 
 ## Credits
-- CSS for index page from [FreeFrontEnd.com](https://codepen.io/3psy0n/pen/LYpajmX)
+
+- Project creators [Ahmed](https://github.com/akamran2001), [Flo](https://github.com/florenceluo), and [Gabby](https://github.com/BobbyTie)
+- [FreeFrontEnd.com](https://codepen.io/3psy0n/pen/LYpajmX) for CSS used in backgrounds and cards
+- [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/)
+- [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
+- Professor Sommers for debugging the database
 
 ## Feedback
 

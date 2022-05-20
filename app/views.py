@@ -49,7 +49,6 @@ def details(request, site_id):
     }
     return render(request, 'app/show.html', context)
 
-
 @login_required
 def create_review(request, site_id):
     site = get_object_or_404(Site, pk=site_id)

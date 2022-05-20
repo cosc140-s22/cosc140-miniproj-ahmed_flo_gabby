@@ -79,23 +79,33 @@
   <a class='btn btn-block btn-success' href="{% url 'createreview' site.id %}"> Write a Review </a>
 {% endif %}
 </section>
-  
-<section>
-<table>
-    <thead class='heading'>
-        <th>Rating</th>
-        <th>Comment</th>
-    </thead>
-    <tbody>
-      {% for review in reviews %}
-			<tr>
-        <td class="info">{{review.rating}}</td> 
-				<td class="info">{{review.comment}}</td>
-			</tr>
-      {% endfor %}
-    </tbody>
-</table>
-</section>
+
+<div class="container mt-1 d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card comments">
+                <ul class="list-unstyled">
+                  {% for review in reviews %}
+                  <li> <span class="round"> <img
+                    {% if user.is_authenticated %}
+                    src="https://avatars.dicebear.com/api/bottts/{{ review.user.username }}.svg"
+                    {% else %}
+                    src="https://avatars.dicebear.com/api/bottts/auth.svg"
+                    {% endif %}
+                    class="rounded-circle"
+                    height="30"
+                    alt="Initials of username"
+                    loading="lazy"
+                  />
+                     <div class="row d-flex">
+                                <h6 class="user pt-2">{{ review.user.username }} : {{review.comment}}</h6>
+                            </div>
+                  {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
   
 <br>
 <div>

@@ -416,3 +416,9 @@ a:hover {
   border-color: #ff4444;
   color: #ff4444;
 }
+.pp {
+  width: 10vw;
+}
+.head {
+  width: 90vw;
+}

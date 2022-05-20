@@ -31,11 +31,11 @@
       type="text/css"
       href="{% static 'app/sites.css' %}"
     />
-    <link rel="icon" type="image/x-icon" href="/media/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/media/images/favicon.ico" />
     <title>Croeso i Cymru</title>
   </head>
   <body>
-        <div id="root">
+    <div id="root">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
           <div class="head">
@@ -61,18 +61,11 @@
                   aria-expanded="false"
                 >
                   <img
-                    {%
-                    if
-                    user.is_authenticated
-                    %}
-                    src="https://avatars.dicebear.com/api/bottts/{{ user.username }}.svg"
-                    {%
-                    else
-                    %}
-                    src="https://avatars.dicebear.com/api/bottts/auth.svg"
-                    {%
-                    endif
-                    %}
+                    {% if user.is_authenticated %}
+                      src="https://avatars.dicebear.com/api/bottts/{{ user.username }}.svg"
+                    {% else %}
+                      src="https://avatars.dicebear.com/api/bottts/auth.svg"
+                    {% endif %}
                     class="rounded-circle"
                     height="30"
                     alt="Initials of username"

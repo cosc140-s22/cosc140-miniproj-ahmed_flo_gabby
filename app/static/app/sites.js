@@ -78,9 +78,3 @@ const searching = (e) => {
     });
   }
 };
-.pp {
-  width: 10vw;
-}
-.head {
-  width: 90vw;
-}

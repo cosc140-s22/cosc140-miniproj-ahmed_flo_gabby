@@ -1,7 +1,14 @@
 {% extends "base.html" %} {% load static %} {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
+
+
+
 <section class="dark">
   <div class="container py-4">
+    <a href="{% url 'index' %}">
+  <button type="button" class="btn btn-outline-success btn-lg btn-rounded"> Back to all sites </button>
+</a>
     <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
     {% if images %}
     <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
@@ -65,4 +72,41 @@
   </div>
 </section>
 <script src="{% static 'app/details.js' %}"></script>
+
+<div class="container">
+	
+
+<section>
+{% if user.is_authenticated %}
+  <a class='btn btn-block btn-success' href="{% url 'createreview' site.id %}"> Write a Review </a>
+{% endif %}
+</section>
+  
+<section>
+<table>
+    <thead class='heading'>
+        <th>Rating</th>
+        <th>Comment</th>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+			<tr>
+        <td class="info">{{review.rating}}</td> 
+				<td class="info">{{review.comment}}</td>
+			</tr>
+      {% endfor %}
+    </tbody>
+</table>
+</section>
+  
+<br>
+<div>
+<a href="{% url 'index' %}">
+  <button type="button" class="btn btn-outline-success btn-lg btn-rounded"> Back to all sites </button>
+</a>
+  
+</div>
+	
+
+
 {% endblock %}

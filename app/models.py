@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth import models as auth_models
 
 # Create your models here.
 
@@ -13,20 +14,23 @@ class Tag(models.Model):
 		return f"{self.name}"
 
 class Site(models.Model):
-	title = models.CharField(max_length = 1000, blank=False)
-	description = models.TextField(blank=True)
-	location = models.TextField(blank=False)
-	tags = models.ManyToManyField(Tag)
+  title = models.CharField(max_length = 1000, blank=False)
+  description = models.TextField(blank=True)
+  location = models.TextField(blank=False)
+  tags = models.ManyToManyField(Tag)
+  
+  def avg_rating(self):
+    return self.review_set.aggregate(models.Avg('rating'))['rating__avg']
 
-	def random_img(self):
-		img_query = self.siteimage_set.all()
-		if(img_query.exists()):
-			return img_query.order_by("?")[0]
-		else:
-			None
+  def random_img(self):
+    img_query = self.siteimage_set.all()
+    if(img_query.exists()):
+      return img_query.order_by("?")[0]
+    else:
+      None
 		
-	def __str__(self):
-		return self.title
+  def __str__(self):
+    return self.title
 
 	
 class SiteImage(models.Model):
@@ -41,11 +45,14 @@ class SiteImage(models.Model):
 	    return f"{self.site}: {self.caption}"
 
 class Review(models.Model):
-  rating = models.IntegerField(blank=False, validators=[MinValueValidator(1),MaxValueValidator(5)])
-  comment = models.TextField(blank=True)
-  site = models.ForeignKey(Site, on_delete=models.CASCADE)
-  def __str__(self):
-    if self.comment==None:
-      return f"{self.site}: {self.rating} stars"
-    else:
-      return f"{self.site}: {self.rating} stars --- {self.comment}"
+	rating = models.IntegerField(blank=False, validators=[MinValueValidator(1),MaxValueValidator(5)])
+	comment = models.TextField(blank=True)
+	site = models.ForeignKey(Site, on_delete=models.CASCADE)
+	user = models.ForeignKey(auth_models.User, models.CASCADE)
+	
+	def __str__(self):
+		if self.comment==None:
+			return f"{self.site}: {self.rating} stars"
+		else:
+			return f"{self.site}: {self.rating} stars --- {self.comment}"
+

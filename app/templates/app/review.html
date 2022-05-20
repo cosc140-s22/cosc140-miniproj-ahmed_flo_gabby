@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+<p class="lead">New review for {{site.name}}</p>
+</section>
+
+<section>
+
+<form action="{% url 'createreview' site.id %}" method="post">
+{% csrf_token %}
+{{ form.as_p }} 
+<input type="submit" value="Submit">
+</form>
+
+</section>
+
+{% endblock %}

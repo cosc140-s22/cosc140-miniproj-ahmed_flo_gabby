@@ -45,14 +45,20 @@ class SiteImage(models.Model):
 	    return f"{self.site}: {self.caption}"
 
 class Review(models.Model):
-	rating = models.IntegerField(blank=False, validators=[MinValueValidator(1),MaxValueValidator(5)])
-	comment = models.TextField(blank=True)
-	site = models.ForeignKey(Site, on_delete=models.CASCADE)
-	user = models.ForeignKey(auth_models.User, models.CASCADE)
-	
-	def __str__(self):
-		if self.comment==None:
-			return f"{self.site}: {self.rating} stars"
-		else:
-			return f"{self.site}: {self.rating} stars --- {self.comment}"
+  rating = models.IntegerField(blank=False, validators=[MinValueValidator(1),MaxValueValidator(5)])
+  comment = models.TextField(blank=True)
+  site = models.ForeignKey(Site, on_delete=models.CASCADE)
+  user = models.ForeignKey(auth_models.User, models.CASCADE)
+  
+  def get_stars(self):
+    return range(self.rating)
+
+  def get_empty_stars(self):
+    return range((5-self.rating))
+  
+  def __str__(self):
+    if self.comment==None:
+      return f"{self.site}: {self.rating} stars"
+    else:
+      return f"{self.site}: {self.rating} stars --- {self.comment}"
 

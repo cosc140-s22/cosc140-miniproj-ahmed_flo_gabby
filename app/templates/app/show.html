@@ -71,11 +71,12 @@
 <section>
   {% if user.is_authenticated %}
   <a class="btn btn-block btn-success" href="{% url 'createreview' site.id %}">
-    Write a Review
+    Write a Review <i class="fas fa-edit"></i>
   </a>
   {% endif %}
 </section>
 
+{% if reviews %}
 <div class="container d-flex justify-content-center">
   <div class="row">
     <div class="col-md-12">
@@ -100,8 +101,14 @@
               <div class="col align-self-center">
                 <h3>{{ review.comment }}</h3>
               </div>
-              <div class="col-1 align-self-end rating-num">
-                <h5>{{ review.rating}}/5</h5>
+              <div class="col-2 align-self-end rating-num">
+                {% for star in review.get_stars %}
+                  <i class="fas fa-dragon red"></i>
+                {% endfor %}
+                {% for star in review.get_empty_stars %}
+                  <i class="fas fa-dragon"></i>
+                {% endfor %}
+                
               </div>
             </div>
             {% endfor %}
@@ -111,6 +118,17 @@
     </div>
   </div>
 </div>
+{% else %}
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card comments" id="comments2">
+        <h5>There are no reviews for {{site.title}} yet</h5>
+      </div>
+    </div>
+  </div>
+</div>   
+{% endif %}
 
 <br />
 

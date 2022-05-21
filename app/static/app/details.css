@@ -97,9 +97,15 @@ p.text {
   background-color: #262626;
 }
 
-#comments {
+#comments{
   width: 90vw;
   margin-top: 1em;
+}
+
+#comments2{
+  width: 90vw;
+  margin-top: 1em;
+  text-align: center;
 }
 
 /* @media screen and (min-width: 576px) {
@@ -115,4 +121,8 @@ p.text {
   .comment-pic {
     max-width: 3em;
   }
+}
+
+.red{
+  color: red;
 }

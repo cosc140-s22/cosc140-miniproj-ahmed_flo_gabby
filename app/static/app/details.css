@@ -2,12 +2,7 @@
   transition: all 0.5s;
   filter: opacity(50%);
 }
-.container{
-  display: inline-block;
-  vertical-align: middle;
-  max-height: 100%;
-  max-width: 100%;
-}
+
 .landscape {
   max-width: 100vw;
 }
@@ -23,34 +18,35 @@
 }
 
 .info {
-  font-size: 30px;  
+  font-size: 30px;
 }
 
-table{
-	color: white;
+table {
+  color: white;
 }
 
-th, td{
+th,
+td {
   padding: 15px;
 }
 
-.btn{
+.btn {
   transition-duration: 0.4s;
   cursor: pointer;
 }
 
-.btn-outline-success:hover{
-  background-color: #00C851;
-	color: white;
+.btn-outline-success:hover {
+  background-color: #00c851;
+  color: white;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
 
 h3 {
-    margin-top: 2%;
-    margin-left: 27%;
-    font-family: 'Manrope', sans-serif;
-    font-weight: bold;
+  margin-top: 2%;
+  margin-left: 27%;
+  font-family: "Manrope", sans-serif;
+  font-weight: bold;
 }
 
 .card {
@@ -58,51 +54,65 @@ h3 {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 40px;
-  width:700px;
+  width: 700px;
 }
 
 span img {
-    border-radius: 10px;
-    padding-right: 5px;
-    width: 60px;
-    height: 55px;
+  border-radius: 10px;
+  padding-right: 5px;
+  width: 60px;
+  height: 55px;
 }
 
 .round .align-self-start {
-    border-radius: 100%;
-    width: 45px;
-    height: 40px;
+  border-radius: 100%;
+  width: 45px;
+  height: 40px;
 }
 
 .media .comment {
-    background: #F4F4F4;
-    border: none;
-    border-radius: 10px;
+  background: #f4f4f4;
+  border: none;
+  border-radius: 10px;
 }
 
 h6.user {
-    color: #ffffff;
-    font-size: 15px !important;
-    padding-left: 15px !important;
-    margin-bottom: 0;
+  color: #ffffff;
+  font-size: 15px !important;
+  padding-left: 15px !important;
+  margin-bottom: 0;
 }
 
 p.text {
-    margin-bottom: 0;
-    color: #ffffff !important;
-    font-size: 14px;
+  margin-bottom: 0;
+  color: #ffffff !important;
+  font-size: 14px;
 }
 
 .ml-auto {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
-.comments{
+.comments {
   background-color: #262626;
 }
 
-@media screen and (min-width: 576px) {
-    .comment {
-        width: 470px !important;
-    }
+#comments {
+  width: 90vw;
+  margin-top: 1em;
+}
+
+/* @media screen and (min-width: 576px) {
+  .comment {
+    width: 470px !important;
+  }
+} */
+@media only screen and (max-width: 600px) {
+  .rating-num {
+    width: 4em;
+    transform: translateY(-1.5em);
+  }
+  .comment-pic {
+    max-width: 3em;
+  }
 }

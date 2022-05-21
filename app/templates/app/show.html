@@ -2,8 +2,6 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
 
-
-
 <section class="dark">
   <div class="container py-4">
     <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
@@ -69,52 +67,61 @@
     {% endif %}
   </div>
 </section>
-<script src="{% static 'app/details.js' %}"></script>
-
-<div class="container">
-	
 
 <section>
-{% if user.is_authenticated %}
-  <a class='btn btn-block btn-success' href="{% url 'createreview' site.id %}"> Write a Review </a>
-{% endif %}
+  {% if user.is_authenticated %}
+  <a class="btn btn-block btn-success" href="{% url 'createreview' site.id %}">
+    Write a Review
+  </a>
+  {% endif %}
 </section>
 
-<div class="container mt-1 d-flex justify-content-center">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card comments">
-                <ul class="list-unstyled">
-                  {% for review in reviews %}
-                  <li> <span class="round"> <img
-                    {% if user.is_authenticated %}
-                    src="https://avatars.dicebear.com/api/bottts/{{ review.user.username }}.svg"
-                    {% else %}
-                    src="https://avatars.dicebear.com/api/bottts/auth.svg"
-                    {% endif %}
-                    class="rounded-circle"
-                    height="30"
-                    alt="Initials of username"
-                    loading="lazy"
-                  />
-                     <div class="row d-flex">
-                                <h6 class="user pt-2">{{ review.user.username }} : {{review.comment}}</h6>
-                            </div>
-                  {% endfor %}
-                </ul>
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card comments" id="comments">
+        <ul class="list-unstyled">
+          {% for review in reviews %}
+          <li>
+            <div class="row">
+              <div class="col-3 align-self-start">
+                <h6 class="user pt-2">
+                  <span class="round">
+                    <img
+                      src="https://avatars.dicebear.com/api/bottts/{{ review.user.username }}.svg"
+                      class="rounded-circle comment-pic"
+                      height="30"
+                      alt="Initials of username"
+                      loading="lazy"
+                    /> </span
+                  >{{ review.user.username }}
+                </h6>
+              </div>
+              <div class="col align-self-center">
+                <h3>{{ review.comment }}</h3>
+              </div>
+              <div class="col-1 align-self-end rating-num">
+                <h5>{{ review.rating}}/5</h5>
+              </div>
             </div>
-        </div>
+            {% endfor %}
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
-  
-<br>
-<div>
-<a href="{% url 'index' %}">
-  <button type="button" class="btn btn-outline-success btn-lg btn-rounded"> Back to all sites </button>
-</a>
-  
-</div>
-	
 
+<br />
+
+<div>
+  <a href="{% url 'index' %}">
+    <button type="button" class="btn btn-outline-success btn-lg btn-rounded">
+      Back to all sites
+    </button>
+  </a>
+</div>
+
+<script src="{% static 'app/details.js' %}"></script>
 
 {% endblock %}

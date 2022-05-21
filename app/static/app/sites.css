@@ -422,3 +422,19 @@ a:hover {
 .head {
   width: 90vw;
 }
+@media only screen and (max-width: 600px) {
+  .head {
+    width: 50vw;
+  }
+  .pp {
+    width: 10vw;
+    margin-left: 80vw;
+    transform: translateY(-5vh);
+  }
+  .nav-container {
+    height: 5vh;
+  }
+  #search-box {
+    transform: translateX(-1em);
+  }
+}

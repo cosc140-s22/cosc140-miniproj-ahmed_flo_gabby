@@ -35,9 +35,9 @@
     <title>Croeso i Cymru</title>
   </head>
   <body>
-    <div id="root">
+    
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+        <div class="container nav-container">
           <div class="head">
             <h1 class="h1 text-start">
               <a href="{% url 'index' %}" class="text-decoration-none">
@@ -106,7 +106,7 @@
         </div>
       </nav>
       {% block content %} {% endblock %}
-    </div>
+   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script

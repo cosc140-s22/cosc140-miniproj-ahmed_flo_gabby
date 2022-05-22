@@ -103,12 +103,10 @@
               </div>
               <div class="col-2 align-self-end rating-num">
                 {% for star in review.get_stars %}
-                  <i class="fas fa-dragon red"></i>
+                <i class="fas fa-dragon red"></i>
+                {% endfor %} {% for star in review.get_empty_stars %}
+                <i class="fas fa-dragon"></i>
                 {% endfor %}
-                {% for star in review.get_empty_stars %}
-                  <i class="fas fa-dragon"></i>
-                {% endfor %}
-                
               </div>
             </div>
             {% endfor %}
@@ -127,7 +125,7 @@
       </div>
     </div>
   </div>
-</div>   
+</div>
 {% endif %}
 
 <br />

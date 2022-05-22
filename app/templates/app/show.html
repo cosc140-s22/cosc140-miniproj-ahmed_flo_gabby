@@ -3,7 +3,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
 
 <section class="dark">
-  <div class="container py-4">
+  <div class="container py-4 h-75">
     <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
     <h5 class="text-center">{{site.location}}</h5>
     <p class="text-center">{{site.description}}</p>
@@ -73,6 +73,10 @@
   <a class="btn btn-block btn-success" href="{% url 'createreview' site.id %}">
     Write a Review <i class="fas fa-edit"></i>
   </a>
+  {% else %}
+    <a class="btn btn-block btn-success" href="{% url 'login' %}?next={{request.path}}">
+    Please login to leave a review <i class="fas fa-sign-in-alt"></i>
+    </a>
   {% endif %}
 </section>
 
@@ -103,9 +107,10 @@
               </div>
               <div class="col-2 align-self-end rating-num">
                 {% for star in review.get_stars %}
-                <i class="fas fa-dragon red"></i>
-                {% endfor %} {% for star in review.get_empty_stars %}
-                <i class="fas fa-dragon"></i>
+                  <i class="fas fa-dragon red_dragon"></i>
+                {% endfor %}
+                {% for star in review.get_empty_stars %}
+                  <i class="fas fa-dragon empty_dragon"></i>
                 {% endfor %}
               </div>
             </div>

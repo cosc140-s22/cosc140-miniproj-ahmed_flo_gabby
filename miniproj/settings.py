@@ -36,13 +36,14 @@ CSRF_TRUSTED_ORIGINS = ['https://cosc140-miniproj-ahmedflogabby.ahmedkamran.repl
 # Application definition
 
 INSTALLED_APPS = [
-		'app',
+	'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [

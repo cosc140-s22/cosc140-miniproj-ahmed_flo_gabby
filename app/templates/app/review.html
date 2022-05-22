@@ -1,18 +1,13 @@
-{% extends "base.html" %}
-
-{% block content %}
-<section>
-<p class="lead">New review for {{site.title}}</p>
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+<section class="container d-flex justify-content-center">
+  <h1 class="text-ceter heading-1">New review for {{site.title}}</h1>
 </section>
 
-<section>
-
-<form action="{% url 'createreview' site.id %}" method="post">
-{% csrf_token %}
-{{ form.as_p }} 
-<input type="submit" value="Submit">
-</form>
-
+<section class="container d-flex justify-content-center">
+  <form action="{% url 'createreview' site.id %}" method="post">
+    {% csrf_token %} {{ form|crispy }}
+    <br /><button class="btn btn-success" type="submit">Submit</button>
+  </form>
 </section>
 
 {% endblock %}

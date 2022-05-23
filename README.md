@@ -19,6 +19,7 @@ Ahmed, Flo, and Gabby
 - [FreeFrontEnd.com](https://codepen.io/3psy0n/pen/LYpajmX) for CSS used in backgrounds and cards
 - [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/)
 - [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
+- [Flaticon](https://www.flaticon.com/pattern) for Wales flag pattern SVG
 - Professor Sommers for debugging the database
 
 ## Feedback

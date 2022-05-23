@@ -59,9 +59,6 @@ def create_review(request, site_id):
                                    comment=form.cleaned_data['comment'],
                                    user=request.user)
             return redirect('details', site.id)
-        else:
-            pass
-    else:
-        form = ReviewForm()
-    context = {'site': site, "form": form, 'ratings':range(1,6)}
+            
+    context = {'site': site, 'ratings':range(1,6)}
     return render(request, 'app/review.html', context)

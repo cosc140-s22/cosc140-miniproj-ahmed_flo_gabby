@@ -6,20 +6,30 @@ Ahmed, Flo, and Gabby
 
 ## Miniproject descripton
 
-    ### Cool Features
-     - Suggestions on searchbar on home page
-     - Hashtag suggestions if you press # on the search bar
-     - Little dragon favicon on browser tab
-     - Randomly generated unique profile pictures on navbar
-     - Sliding Gallery Carousel on detail page
+### Croeso i Cymru
+- A curated selection of places to travel in Wales and England based on our excursions
+- Discover places, browse images and view comments/reviews from autheticated users
+- Login to leave your own reviews
+
+### Cool Features
+ - Suggestions on searchbar on home page
+ - Hashtag suggestions if you press # on the search bar
+ - Little dragon favicon on browser tab
+ - Randomly generated unique profile pictures on navbar
+ - Sliding Gallery Carousel on detail page
+ - Clickable tags. Click om a tag to only view items with that tag. Click it again to deselect it.
+ 
+### Data Recovery
+ - In the event of a data loss, an initial set of sites can be loaded from the ```app/fixtures/seeds.yaml``` file
 
 ## Credits
 
 - Project creators [Ahmed](https://github.com/akamran2001), [Flo](https://github.com/florenceluo), and [Gabby](https://github.com/BobbyTie)
-- [FreeFrontEnd.com](https://codepen.io/3psy0n/pen/LYpajmX) for CSS used in backgrounds and cards
-- [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/)
+- [CodePen](https://codepen.io/3psy0n/pen/LYpajmX) from [FreeFrontEnd.com](https://freefrontend.com/bootstrap-cards/) for CSS used in backgrounds and cards
+- [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/) for overall styling
 - [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
-- Professor Sommers for debugging the database
+- [Flaticon](https://www.flaticon.com/pattern) for Wales flag pattern SVG
+- Professor Sommers for help debugging the database
 
 ## Feedback
 

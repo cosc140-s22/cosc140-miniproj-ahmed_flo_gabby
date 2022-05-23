@@ -7,20 +7,24 @@ Ahmed, Flo, and Gabby
 ## Miniproject descripton
 
 ### Croeso i Cymru
+
 - A curated selection of places to travel in Wales and England based on our excursions
 - Discover places, browse images and view comments/reviews from autheticated users
 - Login to leave your own reviews
 
 ### Cool Features
- - Suggestions on searchbar on home page
- - Hashtag suggestions if you press # on the search bar
- - Little dragon favicon on browser tab
- - Randomly generated unique profile pictures on navbar
- - Sliding Gallery Carousel on detail page
- - Clickable tags. Click om a tag to only view items with that tag. Click it again to deselect it.
- 
+
+- Suggestions on searchbar on home page
+- Hashtag suggestions if you press # on the search bar
+- Little dragon favicon on browser tab
+- Randomly generated unique profile pictures on navbar
+- Sliding Gallery Carousel on detail page
+- Clickable tags. Click om a tag to only view items with that tag. Click it again to deselect it.
+- Scrollable map with loading screen on show page
+
 ### Data Recovery
- - In the event of a data loss, an initial set of sites can be loaded from the ```app/fixtures/seeds.yaml``` file
+
+- In the event of a data loss, an initial set of sites can be loaded from the `app/fixtures/seeds.yaml` file
 
 ## Credits
 
@@ -29,6 +33,9 @@ Ahmed, Flo, and Gabby
 - [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/) for overall styling
 - [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
 - [Flaticon](https://www.flaticon.com/pattern) for Wales flag pattern SVG
+- [Nominatim](https://nominatim.openstreetmap.org) for geocoding locations
+- [OpenLayers](https://openlayers.org) for maps of locations
+- [Loading.io](https://loading.io/css/) for CSS loading animation
 - Professor Sommers for help debugging the database
 
 ## Feedback

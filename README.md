@@ -36,6 +36,7 @@ Ahmed, Flo, and Gabby
 - [Nominatim](https://nominatim.openstreetmap.org) for geocoding locations
 - [OpenLayers](https://openlayers.org) for maps of locations
 - [Loading.io](https://loading.io/css/) for CSS loading animation
+- [Postcode.js](https://ideal-postcodes.co.uk/guides/postcode-validation) RegEx for validating UK Postal Codes
 - Professor Sommers for help debugging the database
 
 ## Feedback

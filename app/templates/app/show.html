@@ -1,11 +1,21 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
+
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
 
 <section class="dark">
   <div class="container py-4 h-75">
     <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
-    <h5 class="text-center"><a class="link-primary" href="https://www.google.com/maps/place/{{site.location}}">{{site.location}}</a></h5>
+    <h5 class="text-center">
+      <a
+        class="link-primary"
+        href="https://www.google.com/maps/place/{{site.location}}"
+        rel="noopener noreferrer"
+        target="_blank"
+        id="site-location"
+        >{{site.location}}</a
+      >
+    </h5>
     <p class="text-center">{{site.description}}</p>
     {% if images %}
     <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
@@ -67,6 +77,18 @@
     {% endif %}
   </div>
 </section>
+
+<h1 class="h1 text-center">Map</h1>
+<p class="error text-danger text-center" id="map-error-msg">
+  There was an error displaying this map. Try reloading.
+</p>
+<div id="map" class="map container d-flex justify-content-center">
+  <div class="lds" id="loader">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
 
 <section class="container">
   {% if user.is_authenticated %}

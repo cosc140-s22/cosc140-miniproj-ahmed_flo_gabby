@@ -59,8 +59,14 @@
           >
         </h1>
         <div class="postcard__subtitle small">
-			<a class="link-primary" href="https://www.google.com/maps/place/{{site.location}}">{{site.location}}</a>
-		</div>
+          <a
+            class="link-primary"
+            href="https://www.google.com/maps/place/{{site.location}}"
+            rel="noopener noreferrer"
+            target="_blank"
+            >{{site.location}}</a
+          >
+        </div>
         <div class="postcard__bar"></div>
         <div class="postcard__preview-txt">{{site.description}}</div>
         {% with tags=site.tags.all %} {% if tags.exists %}

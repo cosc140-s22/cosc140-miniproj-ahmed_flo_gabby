@@ -4,12 +4,26 @@ const hide_caption = (id) => {
 const show_caption = (id) => {
   document.getElementById(id).style.opacity = 1;
 };
+
+const is_valid_postal_code = (postal_code) => {
+  const postal_code_regex = /^[a-z]{1,2}\d[a-z\d]?\s*\d[a-z]{2}$/i;
+  return postal_code.match(postal_code_regex) !== null;
+};
+
 const display_map = async () => {
-  const site_location = document.getElementById("site-location").text;
+  const address = document.getElementById("site-location").text;
+  const postal_code = address.split(" ").slice(-2).join(" ");
+  const search = is_valid_postal_code(postal_code) ? postal_code : address;
   const res = await fetch(
-    `https://nominatim.openstreetmap.org/search?q=${site_location}&format=json`
+    `https://nominatim.openstreetmap.org/search?q=${search}&format=json`
   );
   const data = await res.json();
+
+  console.table({
+    searched: search,
+    got: data,
+  });
+
   let lat,
     lon,
     zoom = 0;
@@ -23,6 +37,7 @@ const display_map = async () => {
     lon = -3.73893;
     zoom = 5;
   }
+
   const map = new ol.Map({
     target: "map",
     layers: [
@@ -37,4 +52,5 @@ const display_map = async () => {
   });
   document.getElementById("loader").style.display = "none";
 };
+
 window.addEventListener("load", display_map);

@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from .models import Site
+from .models import Site, SiteImage
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
 
@@ -38,6 +38,10 @@ def index(request: HttpRequest):
     return render(request, 'app/index.html', context)
 
 
+def random_image(request):
+    img:SiteImage = SiteImage.objects.order_by("?").first()
+    return redirect(img.image.url)
+
 def details(request, site_id):
     site = get_object_or_404(Site, pk=site_id)
     images = site.siteimage_set.all()
@@ -59,9 +63,6 @@ def create_review(request, site_id):
                                    comment=form.cleaned_data['comment'],
                                    user=request.user)
             return redirect('details', site.id)
-        else:
-            pass
-    else:
-        form = ReviewForm()
-    context = {'site': site, "form": form, 'ratings':range(1,6)}
+            
+    context = {'site': site, 'ratings':range(1,6)}
     return render(request, 'app/review.html', context)

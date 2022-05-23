@@ -1,12 +1,43 @@
-{% extends "base.html" %} {% load crispy_forms_tags %} {% block content %}
+{% extends "base.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'app/review.css' %}" />
 <section class="container d-flex justify-content-center">
   <h1 class="text-ceter heading-1">New review for {{site.title}}</h1>
 </section>
-
-<section class="container d-flex justify-content-center">
+<section class="container">
   <form action="{% url 'createreview' site.id %}" method="post">
-    {% csrf_token %} {{ form|crispy }}
-    <br /><button class="btn btn-success" type="submit">Submit</button>
+    {% csrf_token %}
+    <!-- Rating input -->
+    <div class="rating">
+      <p class="lead">Rating <span class="text-danger">*</span></p>
+      {% for rating in ratings %}
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input rating-input"
+          type="radio"
+          name="rating"
+          id="inlineRadio{{rating}}"
+          value="{{rating}}"
+          onclick="rate('{{rating}}')"
+          required
+        />
+        <label class="form-check-label" for="inlineRadio{{rating}}">
+          {{rating}}
+        </label>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="form-outline mb-4">
+      <textarea
+        name="comment"
+        class="form-control"
+        id="form4Example3"
+        rows="4"
+      ></textarea>
+      <label class="form-label" for="form4Example3">Comment</label>
+    </div>
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
   </form>
 </section>
 

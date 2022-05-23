@@ -63,5 +63,5 @@ def create_review(request, site_id):
             pass
     else:
         form = ReviewForm()
-    context = {'site': site, "form": form}
+    context = {'site': site, "form": form, 'ratings':range(1,6)}
     return render(request, 'app/review.html', context)

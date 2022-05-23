@@ -10,10 +10,11 @@ const is_valid_postal_code = (postal_code) => {
   return postal_code.match(postal_code_regex) !== null;
 };
 
-const display_map = async () => {
+const get_map_config = async () => {
   const address = document.getElementById("site-location").text;
   const postal_code = address.split(" ").slice(-2).join(" ");
   const search = is_valid_postal_code(postal_code) ? postal_code : address;
+
   const res = await fetch(
     `https://nominatim.openstreetmap.org/search?q=${search}&format=json`
   );
@@ -24,33 +25,46 @@ const display_map = async () => {
     got: data,
   });
 
-  let lat,
-    lon,
-    zoom = 0;
+  const config = {
+    lat: 0,
+    lon: 0,
+    zoom: 0,
+  };
+
   try {
-    lat = parseFloat(data[0]["lat"]);
-    lon = parseFloat(data[0]["lon"]);
-    zoom = 16;
+    config.lat = parseFloat(data[0]["lat"]);
+    config.lon = parseFloat(data[0]["lon"]);
+    config.zoom = 16;
   } catch (e) {
     //Default to Lat and Lon of Wales if error in data
-    lat = 52.2928116;
-    lon = -3.73893;
-    zoom = 5;
+    config.lat = 52.2928116;
+    config.lon = -3.73893;
+    config.zoom = 5;
   }
 
-  const map = new ol.Map({
-    target: "map",
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM(),
+  return config;
+};
+
+const display_map = async () => {
+  try {
+    map_config = await get_map_config();
+    document.getElementById("map").style.height = "400px";
+    const map = new ol.Map({
+      target: "map",
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+        }),
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([map_config.lon, map_config.lat]),
+        zoom: map_config.zoom,
       }),
-    ],
-    view: new ol.View({
-      center: ol.proj.fromLonLat([lon, lat]),
-      zoom: zoom,
-    }),
-  });
-  document.getElementById("loader").style.display = "none";
+    });
+    document.getElementById("loader").style.display = "none";
+  } catch (error) {
+    document.getElementById("map-error-msg").style.display = "block";
+  }
 };
 
 window.addEventListener("load", display_map);

@@ -85,7 +85,9 @@
                     <span class="dropdown-item"> Hello Stranger </span>
                     {% endif %}
                   </li>
-
+                  <li>
+                    <a class="dropdown-item" href="/admin">Admin Panel</a>
+                  </li>
                   <li>
                     {% if user.is_authenticated %}
                     <a class="dropdown-item" href="{% url 'logout' %}"

@@ -10,8 +10,19 @@ const display_map = async () => {
     `https://nominatim.openstreetmap.org/search?q=${site_location}&format=json`
   );
   const data = await res.json();
-  let lat = parseFloat(data[0]["lat"]);
-  let lon = parseFloat(data[0]["lon"]);
+  let lat,
+    lon,
+    zoom = 0;
+  try {
+    lat = parseFloat(data[0]["lat"]);
+    lon = parseFloat(data[0]["lon"]);
+    zoom = 16;
+  } catch (e) {
+    //Default to Lat and Lon of Wales if error in data
+    lat = 52.2928116;
+    lon = -3.73893;
+    zoom = 5;
+  }
   const map = new ol.Map({
     target: "map",
     layers: [
@@ -21,7 +32,7 @@ const display_map = async () => {
     ],
     view: new ol.View({
       center: ol.proj.fromLonLat([lon, lat]),
-      zoom: 16,
+      zoom: zoom,
     }),
   });
   document.getElementById("loader").style.display = "none";

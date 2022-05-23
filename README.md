@@ -25,7 +25,7 @@ Ahmed, Flo, and Gabby
 ## Credits
 
 - Project creators [Ahmed](https://github.com/akamran2001), [Flo](https://github.com/florenceluo), and [Gabby](https://github.com/BobbyTie)
-- [FreeFrontEnd.com](https://codepen.io/3psy0n/pen/LYpajmX) for CSS used in backgrounds and cards
+- [CodePen](https://codepen.io/3psy0n/pen/LYpajmX) from [FreeFrontEnd.com](https://freefrontend.com/bootstrap-cards/) for CSS used in backgrounds and cards
 - [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/) for overall styling
 - [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
 - [Flaticon](https://www.flaticon.com/pattern) for Wales flag pattern SVG

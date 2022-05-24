@@ -423,7 +423,7 @@ a:hover {
   width: 90vw;
 }
 
-.alert{
+.alert {
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 4px;
@@ -431,32 +431,42 @@ a:hover {
   text-transform: uppercase;
   font-size: 12px;
 }
-button.close{
+button.close {
   -webkit-appearance: none;
   padding: 0;
   cursor: pointer;
   background: 0 0;
   border: 0;
 }
-.close{
+.close {
   font-size: 20px;
   color: #fff;
   opacity: 0.9;
   font-weight: normal;
 }
-.alert_error{
+.alert_error {
   background-color: #f95668;
   border: 2px solid #f95668;
 }
-.fade_error{
+.fade_error {
   background-color: #ffdbdb;
   border: 1px solid #f95668;
 }
-.fade_error .close{
+.fade_error .close {
   color: #f95668;
 }
-.fade_error strong{
+.fade_error strong {
   color: #f95668;
+}
+
+.dropdown-item {
+  background-color: white;
+  transition: all 10ms;
+}
+
+.dropdown-item:hover {
+  background-color: #0e69ff;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {

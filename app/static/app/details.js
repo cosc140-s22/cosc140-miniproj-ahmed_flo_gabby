@@ -10,15 +10,28 @@ const is_valid_postal_code = (postal_code) => {
   return postal_code.match(postal_code_regex) !== null;
 };
 
+const api_req = async (search) => {
+  let result = localStorage.getItem(search);
+  if (result == null) {
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?q=${search}&format=json`
+    );
+    const data = await res.json();
+    // Store the result of the API request locally to not have to repeat it when not needed
+    localStorage.setItem(search, JSON.stringify(data));
+    console.log("From API request: ");
+    return data;
+  } else {
+    console.log("From local storage: ");
+    return JSON.parse(result);
+  }
+};
+
 const get_map_config = async () => {
   const address = document.getElementById("site-location").text;
   const postal_code = address.split(" ").slice(-2).join(" ");
   const search = is_valid_postal_code(postal_code) ? postal_code : address;
-
-  const res = await fetch(
-    `https://nominatim.openstreetmap.org/search?q=${search}&format=json`
-  );
-  const data = await res.json();
+  const data = await api_req(search);
 
   console.table({
     searched: search,

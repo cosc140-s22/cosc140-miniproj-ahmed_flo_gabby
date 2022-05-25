@@ -19,8 +19,9 @@ Ahmed, Flo, and Gabby
 - Little dragon favicon on browser tab
 - Randomly generated unique profile pictures on navbar
 - Sliding Gallery Carousel on detail page
-- Clickable tags. Click om a tag to only view items with that tag. Click it again to deselect it.
+- Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it.
 - Scrollable map with loading screen on show page
+- Geocoding API used to get coordinates of locations for map. Locations stored in session to reduce API requests
 
 ### Data Recovery
 

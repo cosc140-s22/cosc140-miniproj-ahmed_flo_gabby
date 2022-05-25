@@ -1,15 +1,12 @@
-from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Site, SiteImage
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
+from .coords import get_lat_lon
 
-
-# Create your views here.
-def index(request: HttpRequest):
+def index(request):
     sites = Site.objects.all().order_by('title')
-
     search_req = request.GET.get('search')
     tag_req = request.GET.get('tag')
 
@@ -26,9 +23,7 @@ def index(request: HttpRequest):
             '''
 				Searches by title, description, and location
 			'''
-            sites = sites.filter(title__icontains=search_req) | sites.filter(
-                description__icontains=search_req) | sites.filter(
-                    location__icontains=search_req)
+            sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 
     colors = [['red', 'green', 'blue', 'yellow'][i % 4]
               for i in range(len(sites))]
@@ -36,7 +31,6 @@ def index(request: HttpRequest):
     context = {"sites": zip(sites, colors), "tag_req": tag_req}
 
     return render(request, 'app/index.html', context)
-
 
 def random_image(request):
     img:SiteImage = SiteImage.objects.order_by("?").first()
@@ -51,7 +45,19 @@ def details(request, site_id):
         'images': images if images.exists() else None,
         'reviews': reviews if reviews.exists() else None
     }
-    return render(request, 'app/show.html', context)
+
+    lat,lon = get_lat_lon(site.location, request.session)
+    if(lat and lon):
+        '''
+            Render page with coordinates in query string if coordinates are found
+        '''
+        if(request.GET.get('lat')==lat and request.GET.get('lon')==lon):
+            return render(request, 'app/show.html', context)
+        else:
+            url = F"{reverse(viewname='details',args=[site_id])}?lat={lat}&lon={lon}"
+            return redirect(url)
+    else:
+        return render(request, 'app/show.html', context)
 
 @login_required
 def create_review(request, site_id):

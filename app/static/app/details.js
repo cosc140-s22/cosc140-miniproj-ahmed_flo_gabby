@@ -8,8 +8,8 @@ const show_caption = (id) => {
 const get_map_config = () => {
   const params = new URLSearchParams(location.search);
   const config = {
-    lat: params.get("lat"),
-    lon: params.get("lon"),
+    lat: parseFloat(params.get("lat")),
+    lon: parseFloat(params.get("lon")),
     zoom: 16,
   };
 

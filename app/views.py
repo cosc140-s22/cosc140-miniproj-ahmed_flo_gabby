@@ -1,32 +1,12 @@
-from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Site, SiteImage
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
-import re
-import requests
+from .coords import get_lat_lon
 
-def get_post_code(address):
-    post_code_regex = "[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}"
-    return re.findall(post_code_regex,address)
-
-def get_lat_lon(address, session):
-    post_code = get_post_code(address)
-    search =  address if len(post_code)==0 else post_code[0]
-    if(session.get(F'{search}-lat')==None or session.get(F'{search}-lon')==None):
-        data = requests.get(F"https://nominatim.openstreetmap.org/search?q={search}&format=json").json()
-        if(len(data) > 0):
-            '''
-                Store API requests in session to avoid searching places already found
-            '''
-            session[F'{search}-lat'] = data[0]["lat"]
-            session[F'{search}-lon'] = data[0]["lon"]
-    return (session.get(F'{search}-lat'), session.get(F'{search}-lon'))
-
-def index(request:HttpRequest):
+def index(request):
     sites = Site.objects.all().order_by('title')
-
     search_req = request.GET.get('search')
     tag_req = request.GET.get('tag')
 
@@ -43,9 +23,7 @@ def index(request:HttpRequest):
             '''
 				Searches by title, description, and location
 			'''
-            sites = sites.filter(title__icontains=search_req) | sites.filter(
-                description__icontains=search_req) | sites.filter(
-                    location__icontains=search_req)
+            sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 
     colors = [['red', 'green', 'blue', 'yellow'][i % 4]
               for i in range(len(sites))]
@@ -70,10 +48,13 @@ def details(request, site_id):
 
     lat,lon = get_lat_lon(site.location, request.session)
     if(lat and lon):
+        '''
+            Render page with coordinates in query string if coordinates are found
+        '''
         if(request.GET.get('lat')==lat and request.GET.get('lon')==lon):
             return render(request, 'app/show.html', context)
         else:
-            url = F"/sites/{site_id}?lat={lat}&lon={lon}"
+            url = F"{reverse(viewname='details',args=[site_id])}?lat={lat}&lon={lon}"
             return redirect(url)
     else:
         return render(request, 'app/show.html', context)

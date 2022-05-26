@@ -52,12 +52,12 @@ def details(request, site_id):
             Render page with coordinates in query string if coordinates are found
         '''
         if(request.GET.get('lat')==lat and request.GET.get('lon')==lon):
-            return render(request, 'app/show.html', context)
+            pass
         else:
             url = F"{reverse(viewname='details',args=[site_id])}?lat={lat}&lon={lon}"
             return redirect(url)
-    else:
-        return render(request, 'app/show.html', context)
+    
+    return render(request, 'app/details.html', context)
 
 @login_required
 def create_review(request, site_id):

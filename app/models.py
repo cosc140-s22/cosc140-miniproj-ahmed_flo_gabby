@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import models as auth_models
 
@@ -20,7 +21,7 @@ class Site(models.Model):
   tags = models.ManyToManyField(Tag)
   
   def avg_rating(self):
-    return self.review_set.aggregate(models.Avg('rating'))['rating__avg']
+    return self.review_set.aggregate(Avg('rating'))['rating__avg']
 
   def random_img(self):
     img_query = self.siteimage_set.all()

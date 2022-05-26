@@ -187,3 +187,34 @@ p.text {
     height: 32px;
   }
 }
+
+.link {
+  color: #0076bd;
+  text-decoration: none;
+}
+.link:hover {
+  color: white;
+}
+.tags {
+  margin-bottom: 1em;
+}
+
+.tags .tag-item {
+  background: rgba(83, 83, 83, 0.502);
+  border-radius: 3px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: all 0.3s;
+  padding: 2.5px 10px;
+}
+
+.tags .tag-item a {
+  color: white;
+  text-decoration: none;
+}
+
+.avg-rating {
+  margin-top: 0;
+  margin-bottom: 2em;
+}

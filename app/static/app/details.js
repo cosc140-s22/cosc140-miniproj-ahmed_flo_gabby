@@ -5,6 +5,13 @@ const show_caption = (id) => {
   document.getElementById(id).style.opacity = 1;
 };
 
+const tag_hover = (event) => {
+  event.currentTarget.style.background = "#0076bd";
+};
+const tag_hover_end = (event) => {
+  event.currentTarget.style.background = "rgba(83, 83, 83, 0.4)";
+};
+
 const get_map_config = () => {
   const params = new URLSearchParams(location.search);
   const config = {

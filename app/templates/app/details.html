@@ -3,12 +3,67 @@
 
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
 
-<section class="dark">
-  <div class="container py-4 h-75">
-    <h1 class="h1 text-center" id="pageHeaderTitle">{{site.title}}</h1>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
+  </div>
+
+  <!-- AVERAGE RATINGS START -->
+  {% if site.avg_rating %}
+  <div class="d-flex justify-content-center tags avg-rating">
+    {% for rating in full_rating%}
+    <div
+      class="tag-item"
+      onmouseover="tag_hover(event)"
+      onmouseleave="tag_hover_end(event)"
+    >
+      <i class="fa-solid fa-star"></i>
+    </div>
+
+    {% endfor %} {% for rating in partial_rating%}
+    <div
+      class="tag-item"
+      onmouseover="tag_hover(event)"
+      onmouseleave="tag_hover_end(event)"
+    >
+      <i class="fa-solid fa-star-half"></i>
+    </div>
+    {% endfor %} {% for rating in empty_rating%}
+
+    <div
+      class="tag-item"
+      onmouseover="tag_hover(event)"
+      onmouseleave="tag_hover_end(event)"
+    >
+      <i class="fa-solid fa-star text-dark"></i>
+    </div>
+
+    {% endfor %}
+  </div>
+  {% endif %}
+  <!-- AVERAGE RATINGS END -->
+
+  <!-- TAGS START -->
+  {% with tags=site.tags.all %} {% if tags.exists %}
+  <div class="tags d-flex justify-content-center">
+    {% for tag in tags %}
+    <div
+      class="text-center tag-item"
+      onmouseover="tag_hover(event)"
+      onmouseleave="tag_hover_end(event)"
+    >
+      <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+  <!-- TAGS END -->
+
+  <div class="row">
     <h5 class="text-center">
+      <i class="fa-solid fa-location-dot" style="color: red"></i> &nbsp;
       <a
-        class="link-primary"
+        class="link"
         href="https://www.google.com/maps/place/{{site.location}}"
         rel="noopener noreferrer"
         target="_blank"
@@ -16,7 +71,12 @@
         >{{site.location}}</a
       >
     </h5>
-    <p class="text-center">{{site.description}}</p>
+  </div>
+</div>
+
+<!-- IMAGE GALLERY START -->
+<section class="dark">
+  <div class="container py-4 h-75">
     {% if images %}
     <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
       {% if images.count > 1 %}
@@ -77,8 +137,10 @@
     {% endif %}
   </div>
 </section>
-
-<h1 class="h1 text-center">Map</h1>
+<!-- IMAGE GALLERY END -->
+<section class="container bg-dark rounded-5">
+  <p class="text-center text-break fs-3">{{site.description}}</p>
+</section>
 
 <div id="map" class="map container d-flex justify-content-center">
   <div class="lds" id="loader">
@@ -87,6 +149,8 @@
     <div></div>
   </div>
 </div>
+
+<!-- COMMENT SECTION -->
 
 <section class="container">
   {% if user.is_authenticated %}
@@ -154,6 +218,8 @@
   </div>
 </div>
 {% endif %}
+
+<!-- COMMENT SECTION END -->
 
 <br />
 

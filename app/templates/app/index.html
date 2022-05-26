@@ -39,6 +39,36 @@
         </div>
       </div>
     </div>
+    <div class="container" style="margin-bottom: 1em">
+      <!-- Success -->
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-success dropdown-toggle"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Sort by: {{ sort }}
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item" href="{% url 'index' %}?sort=title"
+              >Title</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'index' %}?sort=rating"
+              >Rating</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item bg-info" href="{% url 'index' %}?reset=True"
+              >Reset</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
     {% for site,color in sites %}
     <article class="postcard dark {{color}}" id="{{site.id}}">
       {% with img=site.random_img %} {% if img %}
@@ -67,7 +97,14 @@
             >{{site.location}}</a
           >
         </div>
-        <div class="postcard__bar"></div>
+
+        {% if site.avg_rating %}
+        <div class="postcard__tagbox">
+          <div class="postcard__bar" style="margin-right: 1em"></div>
+          <div class="tag__item">{{site.avg_rating|floatformat:1}} / 5.0</div>
+        </div>
+        {% endif %}
+
         <div class="postcard__preview-txt">{{site.description}}</div>
         {% with tags=site.tags.all %} {% if tags.exists %}
         <ul class="postcard__tagbox">

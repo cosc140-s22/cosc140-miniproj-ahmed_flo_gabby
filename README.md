@@ -16,10 +16,11 @@ Ahmed, Flo, and Gabby
 
 - Suggestions on searchbar on home page
 - Hashtag suggestions if you press # on the search bar
+- - Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it
+- Sort by name or rating. Filter by keyword or tags. Combine both sorting and searching, with preferences saved in sessions
 - Little dragon favicon on browser tab
 - Randomly generated unique profile pictures on navbar
 - Sliding Gallery Carousel on detail page
-- Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it.
 - Scrollable map with loading screen on show page
 - Geocoding API used to get coordinates of locations for map. Locations stored in session to reduce API requests
 

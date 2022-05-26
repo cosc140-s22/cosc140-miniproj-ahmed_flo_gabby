@@ -1,5 +1,20 @@
+'''
+    Helper functions for added functionality in our views
+'''
 import re
 import requests
+
+def get_query(session):
+    query_string = [F"{key}={session.get(key)}" for key in session.keys()]
+    return '&'.join(query_string)
+
+def update_state(params, session, keys):
+    if params.get('reset'):
+        session.clear()
+    
+    for key in keys:
+        if params.get(key):
+            session[key] = params.get(key)
 
 def get_post_code(address):
     '''

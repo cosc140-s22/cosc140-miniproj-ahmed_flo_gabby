@@ -3,20 +3,7 @@ from django.urls import reverse
 from .models import Site, SiteImage
 from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
-from .coords import get_lat_lon
-
-def get_query(session):
-    query_string = [F"{key}={session.get(key)}" for key in session.keys()]
-    return '&'.join(query_string)
-
-
-def update_state(params, session, keys):
-    if params.get('reset'):
-        session.clear()
-    
-    for key in keys:
-        if params.get(key):
-            session[key] = params.get(key)
+from .helpers import get_lat_lon, update_state, get_query
 
 def index(request):
     search_req = request.GET.get('search')

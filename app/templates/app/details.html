@@ -138,16 +138,21 @@
   </div>
 </section>
 <!-- IMAGE GALLERY END -->
+
 <section class="container bg-dark rounded-5">
   <p class="text-center text-break fs-3">{{site.description}}</p>
 </section>
 
-<div id="map" class="map container d-flex justify-content-center">
+<div class="container d-flex justify-content-center">
   <div class="lds" id="loader">
     <div></div>
     <div></div>
     <div></div>
   </div>
+</div>
+
+<div class="container map-container">
+  <div id="map" class="map"></div>
 </div>
 
 <!-- COMMENT SECTION -->
@@ -231,6 +236,6 @@
   </a>
 </div>
 
-<script src="{% static 'app/details.js' %}"></script>
+<script defer src="{% static 'app/details.js' %}"></script>
 
 {% endblock %}

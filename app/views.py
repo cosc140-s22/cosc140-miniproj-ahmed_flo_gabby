@@ -19,7 +19,7 @@ def index(request):
             Redirect to url with query string that includes all search/sort parameters applied
         '''
         if key in request.session.keys() and key not in request.GET.keys():
-            return redirect(F"{reverse('index')}?{get_query(request.session)}")
+            return redirect(F"{reverse('index')}?{get_query(request.session, search_sort_keys)}")
 
     sites = Site.objects.all().order_by('title')
 

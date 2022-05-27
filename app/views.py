@@ -63,7 +63,7 @@ def index(request):
             else:
                 colors.append('red')
         else:
-            colors.append("")
+            colors.append("blue")
     '''
         The placeholder on the searchbar should reflect which filter, if any, have been applied
     '''

@@ -13,16 +13,17 @@ Ahmed, Flo, and Gabby
 - Login to leave your own reviews
 
 ### Cool Features
-
 - Suggestions on searchbar on home page
 - Hashtag suggestions if you press # on the search bar
-- - Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it
+- Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it
 - Sort by name or rating. Filter by keyword or tags. Combine both sorting and searching, with preferences saved in sessions
 - Little dragon favicon on browser tab
 - Randomly generated unique profile pictures on navbar
 - Sliding Gallery Carousel on detail page
 - Scrollable map with loading screen on show page
 - Geocoding API used to get coordinates of locations for map. Locations stored in session to reduce API requests
+- Dragon icons for reviews
+- Login pages shows a random image. View random images from the [random/image](https://cosc140-miniproj-ahmedflogabby.ahmedkamran.repl.co/random/image) url
 
 ### Data Recovery
 

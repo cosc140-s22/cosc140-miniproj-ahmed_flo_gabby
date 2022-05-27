@@ -10,46 +10,30 @@
     <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
   </div>
   <div class="row">
-      
         <!-- AVERAGE RATINGS START -->
         {% if site.avg_rating %}
+            <a href="#start_of_comments"><h4 class="text-center">{{site.avg_rating|floatformat:1}} out of 5.0</h4></a>
           <div class="d-flex justify-content-center tags avg-rating">
-            {% for rating in full_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
+           {% for rating in site.get_avg_stars %}
+              <div class="give_me_space">
                 <i class="fas fa-dragon red_dragon"></i>
               </div>
-            {% endfor %} {% for rating in partial_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
-                <i class="fas fa-dragon red_dragon"></i>
-              </div>
-            {% endfor %} {% for rating in empty_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
+            {% endfor %} {% for rating in site.get_avg_empty_stars %}
+              <div class="give_me_space">
                 <i class="fas fa-dragon empty_dragon"></i>
               </div>
             {% endfor %}
           </div>
         {% endif %}
         <!-- AVERAGE RATINGS END -->
-        
       </div>
   
   <div class="row">
+    {% if images %}
     <div class="col">
       <!-- IMAGE GALLERY START -->
       <section class="dark">
-        <div class="container py-4 h-75">
+        <div class="container py-4 h-75 px-0 d-none d-sm-block">
           {% if images %}
           <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
             {% if images.count > 1 %}
@@ -112,7 +96,7 @@
       </section>
       <!-- IMAGE GALLERY END -->
     </div>
-    
+    {% endif %}
     <div class="col">
 
       <div class="row">
@@ -184,7 +168,7 @@
 </section>
 
 {% if reviews %}
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-center" id="start_of_comments">
   <div class="row">
     <div class="col-md-12">
       <div class="card comments" id="comments">

@@ -17,7 +17,7 @@ const show_caption = (id) => {
  * @param {Event} event
  */
 const tag_hover = (event) => {
-  event.currentTarget.style.background = "#0076bd";
+  event.currentTarget.style.background = "#00B74A";
 };
 /**
  * Reset the bg color of the hovered tags

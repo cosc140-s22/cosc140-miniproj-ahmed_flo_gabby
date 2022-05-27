@@ -390,6 +390,16 @@ a:hover {
   }
 }
 
+.red_dragon {
+  color: #ff4444;
+  text-shadow: #000 0px 0px 2px;
+}
+
+.empty_dragon {
+  color: #424242;
+  text-shadow: #000 0px 0px 2px;
+}
+
 #search-box {
   margin-bottom: 1em;
 }

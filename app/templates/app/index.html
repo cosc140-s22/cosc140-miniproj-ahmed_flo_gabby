@@ -103,7 +103,14 @@
           {% if site.avg_rating %}
           <div class="postcard__tagbox">
             <div class="postcard__bar" style="margin-right: 1em"></div>
-            <div class="tag__item">{{site.avg_rating|floatformat:1}} / 5.0</div>
+            <div class="tag__item">
+              {% for star in site.get_avg_stars %}
+                <i class="fas fa-dragon red_dragon"></i>
+              {% endfor %}
+              {% for star in site.get_avg_empty_stars %}
+                <i class="fas fa-dragon empty_dragon"></i>
+              {% endfor %} {{site.avg_rating|floatformat:2}} / 5.00
+            </div>
           </div>
           {% endif %}
 

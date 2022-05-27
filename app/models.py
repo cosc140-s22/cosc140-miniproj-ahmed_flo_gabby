@@ -1,3 +1,4 @@
+import math
 from django.db import models
 from django.db.models import Avg
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -35,7 +36,13 @@ class Site(models.Model):
       return img_query.order_by("?")[0]
     else:
       None
-		
+
+
+  def get_avg_stars(self):
+    return range(math.trunc(self.avg_rating()))
+  def get_avg_empty_stars(self):
+    return range((5-math.trunc(self.avg_rating())))
+    
   def __str__(self):
     return self.title
 

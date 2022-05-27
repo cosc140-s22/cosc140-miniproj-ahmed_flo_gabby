@@ -12,6 +12,14 @@ def index(request):
     search_req = request.GET.get('search')
     tag_req = request.GET.get('tag')
     sort = request.GET.get(key='sort',default='title')
+
+    if (search_req):
+        if (search_req.startswith("#")):
+            '''
+				If a search begins with # search for it as a tag name by redirecting to the index page with the tag query param
+			'''
+            return redirect(F"{reverse('index')}?tag={search_req[1:]}")
+
     '''
         RESTful search sort
     '''
@@ -30,16 +38,10 @@ def index(request):
         sites = sites.filter(tags__name=tag_req)
 
     if (search_req):
-        if (search_req.startswith("#")):
-            '''
-				If a search begins with # search for it as a tag name by redirecting to the index page with the tag query param
-			'''
-            return redirect(F"{reverse('index')}?tag={search_req[1:]}")
-        else:
-            '''
-				Searches by title, description, and location. Appends all filters into one search
-			'''
-            sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
+        '''
+            Searches by title, description, and location. Appends all filters into one search
+        '''
+        sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 
     if(sort=='rating'):
         '''
@@ -62,8 +64,18 @@ def index(request):
                 colors.append('red')
         else:
             colors.append("")
+    '''
+        The placeholder on the searchbar should reflect which filter, if any, have been applied
+    '''
+    search_bar_placeholder = "Search by keywords. Use # to search by tags"
+    if search_req and tag_req:
+        search_bar_placeholder = F"keywords: {search_req} & tag: {tag_req}"
+    elif search_req:
+        search_bar_placeholder =F"keywords: {search_req} "
+    elif tag_req:
+        search_bar_placeholder =F"keywords: {tag_req} "
 
-    context = {"sites": zip(sites, colors), "tag_req": tag_req, 'sort':sort}
+    context = {"sites": zip(sites, colors), "tag_req": tag_req, 'sort':sort, 'search_bar_placeholder':search_bar_placeholder}
 
     return render(request, 'app/index.html', context)
 

@@ -21,9 +21,15 @@ class Site(models.Model):
   tags = models.ManyToManyField(Tag)
   
   def avg_rating(self):
+    '''
+      Return the average rating of the site
+    '''
     return self.review_set.aggregate(Avg('rating'))['rating__avg']
 
   def random_img(self):
+    '''
+      Return a random image associated with this site
+    '''
     img_query = self.siteimage_set.all()
     if(img_query.exists()):
       return img_query.order_by("?")[0]

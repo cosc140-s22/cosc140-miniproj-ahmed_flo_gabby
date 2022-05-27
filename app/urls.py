@@ -8,7 +8,7 @@ def root_redirect(request:HttpRequest):
   return redirect(reverse_lazy('index'))
 
 urlpatterns = [
-	path('login/', auth_views.LoginView.as_view(), name='login'),
+	  path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='index'), name='logout'),
     path('accounts/profile/', root_redirect),
     path('sites', views.index, name='index'),

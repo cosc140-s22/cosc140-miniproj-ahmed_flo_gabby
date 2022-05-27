@@ -426,6 +426,17 @@ a:hover {
   border-color: #ff4444;
   color: #ff4444;
 }
+.btn-outline-danger {
+  transition: all;
+  transition-duration: 0.4s;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
 .pp {
   width: 10vw;
 }

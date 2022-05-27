@@ -55,3 +55,15 @@ h4 {
 .btn-outline-danger:hover {
   color: #ff9191;
 }
+
+.cover-img-left {
+  object-fit: cover;
+  object-position: left;
+}
+
+.review-col {
+  padding: 3rem;
+}
+.review-col h1 {
+  margin-bottom: 1rem;
+}

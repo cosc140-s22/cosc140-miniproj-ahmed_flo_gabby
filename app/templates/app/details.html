@@ -9,6 +9,41 @@
   <div class="row">
     <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
   </div>
+  <div class="row">
+      
+        <!-- AVERAGE RATINGS START -->
+        {% if site.avg_rating %}
+          <div class="d-flex justify-content-center tags avg-rating">
+            {% for rating in full_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon red_dragon"></i>
+              </div>
+            {% endfor %} {% for rating in partial_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon red_dragon"></i>
+              </div>
+            {% endfor %} {% for rating in empty_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon empty_dragon"></i>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <!-- AVERAGE RATINGS END -->
+        
+      </div>
   
   <div class="row">
     <div class="col">
@@ -79,41 +114,6 @@
     </div>
     
     <div class="col">
-      <div class="row">
-      
-        <!-- AVERAGE RATINGS START -->
-        {% if site.avg_rating %}
-          <div class="d-flex justify-content-center tags avg-rating">
-            {% for rating in full_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
-                <i class="fas fa-dragon red_dragon"></i>
-              </div>
-            {% endfor %} {% for rating in partial_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
-                <i class="fas fa-dragon red_dragon"></i>
-              </div>
-            {% endfor %} {% for rating in empty_rating%}
-              <div
-                class="tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
-                <i class="fas fa-dragon empty_dragon"></i>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-        <!-- AVERAGE RATINGS END -->
-        
-      </div>
 
       <div class="row">
         <!-- TAGS START -->
@@ -147,11 +147,11 @@
         </h5>
       </div>
       
-      <section class="container bg-dark rounded-5">
+        <section class="container bg-dark rounded-5">
         <p class="text-center text-break fs-3">{{site.description}}</p>
-      </section>
-</div>
+        </section>
     </div>
+  </div>
 </div>
 
 <div class="container d-flex justify-content-center">

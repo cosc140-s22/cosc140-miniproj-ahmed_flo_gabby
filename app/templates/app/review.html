@@ -8,25 +8,41 @@
   <h1 class="text-ceter heading-1">New review for <a href="{% url 'details' site.id %}" class="site-title">{{site.title}}</a></h1>
 </section>
 <section class="container">
+  {% with img=site.random_img %} {% if img %}
+  <div class="row">
+    <div class="col-sm-6 px-0 d-none d-sm-block">
+      <img
+        class="w-100 vh-100"
+        src="{{img.image.url}}"
+        alt="{{img.caption}}"
+        style="object-fit: cover; object-position: left"
+      />
+    </div>
+  {% endif %} {% endwith %}
+  <div class="col">
   <form action="{% url 'createreview' site.id %}" method="post">
     {% csrf_token %}
-    <!-- Rating input -->
+  
     <div class="rating_div">
   <div class="container d-flex justify-content-center mt-100">
      <div class="row">
          <div class="col-md-6">
+
+            <!-- RATING INPUT START -->
              <div class="card bg-dark">
                  <div class="card-body text-center"> 
                    <p class="lead">Rating <span class="text-danger">*</span></p>
-                     <fieldset class="rating">
-                         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Amazing - 5 stars"></label>
-                         <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                         <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                         <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                         <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Not happy I went there - 1 star"></label>
-                     </fieldset>
-                 </div>
-             </div>
+                  <div class="btn-group rating">
+                    <input type="radio" class="btn-check" name="rating" id="option1" autocomplete="off" value="1"/><label class="btn btn-outline-danger" for="option1" title="Very bad - 1/5"><i class="fas fa-dragon"></i></label>
+                    <input type="radio" class="btn-check" name="rating" id="option2" autocomplete="off" value="2"/><label class="btn btn-outline-danger" for="option2" title="Didn't like - 2/5"><i class="fas fa-dragon"></i></label>
+                    <input type="radio" class="btn-check" name="rating" id="option3" autocomplete="off" value="3"/><label class="btn btn-outline-danger" for="option3" title="Meh - 3/5"><i class="fas fa-dragon"></i></label>
+                    <input type="radio" class="btn-check" name="rating" id="option4" autocomplete="off" value="4"/><label class="btn btn-outline-danger" for="option4" title="Really enjoyed - 4/5"><i class="fas fa-dragon"></i></label>
+                    <input type="radio" class="btn-check" name="rating" id="option5" autocomplete="off" value="5"/><label class="btn btn-outline-danger" for="option5" title="Awesome - 5 stars"><i class="fas fa-dragon"></i></label>
+                  </div>
+                   
+                </div>
+            </div>
+            <!-- RATING INPUT END -->
          </div>
      </div>
  </div>
@@ -43,7 +59,9 @@
       <label class="form-label" for="form4Example3">Comment</label>
     </div>
     <!-- Submit button -->
-    <button type="submit" class="btn btn-success btn-block mb-4">Send</button>
+    <button type="submit" class="btn btn-success btn-rounded btn-block mb-4">Send</button>
   </form>
+  </div>
+  </div>
 </section>
 {% endblock %}

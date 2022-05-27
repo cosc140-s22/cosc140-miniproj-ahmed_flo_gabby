@@ -1,3 +1,6 @@
+/**
+ * All of the tags and titles visible on the page
+ */
 const data = {
   titles: [...document.querySelectorAll(".site-title")].map((title) =>
     title.textContent.trim().toLowerCase()
@@ -8,7 +11,9 @@ const data = {
 };
 
 /**
- * @param {string} val
+ * Takes the inputed string in the searchbar and returns all titles and tags that contain the search term
+ * @param {string} val Current input in searchbar
+ * @returns {string[]} Array of suggested titles and tags
  */
 const get_suggestions = (val) => {
   let titles = data.titles.filter((title) => {
@@ -25,6 +30,7 @@ const get_suggestions = (val) => {
 };
 
 /**
+ * Highlight the hovered item on the search suggestions
  * @param {Event} e
  */
 const search_hover = (e) => {
@@ -37,6 +43,7 @@ const search_hover = (e) => {
 };
 
 /**
+ * When the user clicks on a search suggestion fill it in the search bar and reset the suggestions
  * @param {Event} e
  */
 const selected = (e) => {
@@ -46,6 +53,7 @@ const selected = (e) => {
 };
 
 /**
+ * Format the given search suggestion to be in title case (first letter of every word capitalized)
  * @param {string} s
  * @returns {string}
  */
@@ -57,6 +65,7 @@ const title_case = (s) => {
 };
 
 /**
+ * Populate a list of search suggestions as the user types on the search bar
  * @param {Event} e
  */
 const searching = (e) => {

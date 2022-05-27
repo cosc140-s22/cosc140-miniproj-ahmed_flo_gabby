@@ -1,17 +1,35 @@
+/**
+ * Hide the caption of the gallery when hovering on the image
+ * @param {number} id
+ */
 const hide_caption = (id) => {
   document.getElementById(id).style.opacity = 0;
 };
+/**
+ * Show the caption of the gallery when not hovering on the image
+ * @param {number} id
+ */
 const show_caption = (id) => {
   document.getElementById(id).style.opacity = 1;
 };
-
+/**
+ * Color the hovered tags
+ * @param {Event} event
+ */
 const tag_hover = (event) => {
   event.currentTarget.style.background = "#0076bd";
 };
+/**
+ * Reset the bg color of the hovered tags
+ * @param {Event} event
+ */
 const tag_hover_end = (event) => {
   event.currentTarget.style.background = "rgba(83, 83, 83, 0.4)";
 };
-
+/**
+ * Get the lat and lon of the map from URL, and configure the zoom accordingly for the map
+ * @returns {{lat: string, lon: number, zoom: number}} Configuration of map
+ */
 const get_map_config = () => {
   const params = new URLSearchParams(location.search);
   const config = {
@@ -29,7 +47,9 @@ const get_map_config = () => {
 
   return config;
 };
-
+/**
+ * Hide the loading bars and display the map when all the data is ready
+ */
 const display_map = () => {
   map_config = get_map_config();
   document.getElementById("map").style.height = "400px";

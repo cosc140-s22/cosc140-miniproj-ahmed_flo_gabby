@@ -6,6 +6,9 @@ from .forms import ReviewForm
 from .helpers import get_lat_lon, update_state, get_query
 
 def index(request):
+    '''
+        Render a page containing all the sites in our app or only the ones searched/filtered
+    '''
     search_req = request.GET.get('search')
     tag_req = request.GET.get('tag')
     sort = request.GET.get(key='sort',default='title')
@@ -29,20 +32,26 @@ def index(request):
     if (search_req):
         if (search_req.startswith("#")):
             '''
-				If a search begins with # search for it as a tag name
+				If a search begins with # search for it as a tag name by redirecting to the index page with the tag query param
 			'''
             return redirect(F"{reverse('index')}?tag={search_req[1:]}")
         else:
             '''
-				Searches by title, description, and location
+				Searches by title, description, and location. Appends all filters into one search
 			'''
             sites = sites.filter(title__icontains=search_req) | sites.filter(description__icontains=search_req) | sites.filter(location__icontains=search_req)
 
     if(sort=='rating'):
+        '''
+            Sort from highest to lowest average rating. Sites without reviews go to the bottom
+        '''
         sites =  sorted(list(sites),key=lambda site: site.avg_rating() if site.avg_rating() else 0.0, reverse=True)
 
     colors = []
     for site in sites:
+        '''
+            Color code sites by their average rating. Green is high, yellow is medium, red is low
+        '''
         r = site.avg_rating()
         if(r):
             if 5>=r>=4:
@@ -59,10 +68,16 @@ def index(request):
     return render(request, 'app/index.html', context)
 
 def random_image(request):
+    '''
+        Redirect to a random image from the database on every request
+    '''
     img:SiteImage = SiteImage.objects.order_by("?").first()
     return redirect(img.image.url)
 
 def details(request, site_id):
+    '''
+        Render a view with details for a specific site indicated by the site id
+    '''
     site = get_object_or_404(Site, pk=site_id)
     images = site.siteimage_set.all()
     reviews = site.review_set.all()
@@ -70,7 +85,8 @@ def details(request, site_id):
     lat,lon = get_lat_lon(site.location, request.session)
     if(lat and lon):
         '''
-            Render page with coordinates in query string if coordinates are found
+            Render page with coordinates in query string if coordinates are found.
+            This will help JavaScript on that page render a map based on the coordinates.
         '''
         if(request.GET.get('lat')==lat and request.GET.get('lon')==lon):
             pass
@@ -78,6 +94,12 @@ def details(request, site_id):
             url = F"{reverse(viewname='details',args=[site_id])}?lat={lat}&lon={lon}"
             return redirect(url)
     
+    '''
+        Every whole number in the average rating in considered a full rating
+        Anything above 0.5 but below 1 is a partial rating
+        The rest are empty ratings
+        This will help the page show full, partial, and empty stars
+    '''
     full_rating, partial_rating, empty_rating = 0,0,5
     site_rating = site.avg_rating()
     if(site_rating):
@@ -97,11 +119,14 @@ def details(request, site_id):
         'partial_rating':range(partial_rating),
         'empty_rating': range(empty_rating)
     }
-    print(partial_rating)
+
     return render(request, 'app/details.html', context)
 
 @login_required
 def create_review(request, site_id):
+    '''
+        Show a form for the user to review a site and add their review to the database when submitted properly
+    '''
     site = get_object_or_404(Site, pk=site_id)
     if (request.method == 'POST'):
         form = ReviewForm(request.POST)

@@ -110,21 +110,6 @@ p.text {
   text-align: center;
 }
 
-/* @media screen and (min-width: 576px) {
-  .comment {
-    width: 470px !important;
-  }
-} */
-@media only screen and (max-width: 600px) {
-  .rating-num {
-    width: 4em;
-    transform: translateY(-1.5em);
-  }
-  .comment-pic {
-    max-width: 3em;
-  }
-}
-
 .red_dragon {
   color: #ff4444;
   text-shadow: #000 0px 0px 2px;
@@ -217,6 +202,23 @@ p.text {
   margin-bottom: 2em;
 }
 
-.give_me_space{
+.give_me_space {
   padding: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  .rating-num {
+    width: 4em;
+    transform: translateY(-1.5em);
+  }
+  .comment-pic {
+    max-width: 3em;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .img-col {
+    min-width: 55vw;
+    max-width: 55vw;
+  }
 }

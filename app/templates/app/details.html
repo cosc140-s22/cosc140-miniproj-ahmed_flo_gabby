@@ -1,122 +1,126 @@
-{% extends "base.html" %} 
-{% load static %} 
-{% block head %}
+{% extends "base.html" %} {% load static %} {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
-{% endblock %} 
-{% block content %}
+{% endblock %} {% block content %}
 <div class="container">
   <div class="row">
     <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
   </div>
   <div class="row">
-        <!-- AVERAGE RATINGS START -->
-        {% if site.avg_rating %}
-            <a href="#start_of_comments"><h4 class="text-center">{{site.avg_rating|floatformat:1}} out of 5.0</h4></a>
-          <div class="d-flex justify-content-center tags avg-rating">
-           {% for rating in site.get_avg_stars %}
-              <div class="give_me_space">
-                <i class="fas fa-dragon red_dragon"></i>
-              </div>
-            {% endfor %} {% for rating in site.get_avg_empty_stars %}
-              <div class="give_me_space">
-                <i class="fas fa-dragon empty_dragon"></i>
-              </div>
-            {% endfor %}
-          </div>
-        {% endif %}
-        <!-- AVERAGE RATINGS END -->
+    <!-- AVERAGE RATINGS START -->
+    {% if site.avg_rating %}
+    <a href="#start_of_comments"
+      ><h4 class="text-center">
+        {{site.avg_rating|floatformat:1}} out of 5.0
+      </h4></a
+    >
+    <div class="d-flex justify-content-center tags avg-rating">
+      {% for rating in site.get_avg_stars %}
+      <div class="give_me_space">
+        <i class="fas fa-dragon red_dragon"></i>
       </div>
-  
+      {% endfor %} {% for rating in site.get_avg_empty_stars %}
+      <div class="give_me_space">
+        <i class="fas fa-dragon empty_dragon"></i>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <!-- AVERAGE RATINGS END -->
+  </div>
+
   <div class="row">
     {% if images %}
-    <div class="col">
+    <div class="col img-col">
       <!-- IMAGE GALLERY START -->
-      <section class="dark">
-        <div class="container py-4 h-75 px-0 d-none d-sm-block">
-          {% if images %}
-          <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
-            {% if images.count > 1 %}
-            <div class="carousel-indicators">
-              {% for image in images %}
-              <button
-                type="button"
-                data-mdb-target="#img-gallery"
-                data-mdb-slide-to="{{ forloop.counter0 }}"
-                class="active"
-                aria-current="true"
-                aria-label="Slide {{ forloop.counter }}"
-              ></button>
-              {% endfor %}
-            </div>
-            {% endif %}
-      
-            <div class="carousel-inner rounded-5 shadow-4-strong">
-              {% for image in images %}
-              <div
-                class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}"
-              >
-                <a class="postcard__img_link" href="{{image.image.url}}">
-                  <img
-                    src="{{image.image.url}}"
-                    class="mx-auto d-block carousel-image {% if image.image.height > image.image.width %}portrait{% else %}landscape{% endif %}"
-                    alt="{{image.caption}}"
-                    onmouseover='hide_caption("{{image.id}}")'
-                    onmouseleave='show_caption("{{image.id}}")'
-                  />
-                </a>
-                <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
-                  <h5>{{image.caption}}</h5>
-                </div>
-              </div>
-              {% endfor %} {% if images.count > 1 %}
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-mdb-target="#img-gallery"
-                data-mdb-slide="prev"
-              >
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-mdb-target="#img-gallery"
-                data-mdb-slide="next"
-              >
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-              {% endif %}
-            </div>
+      <div class="container py-4">
+        {% if images %}
+        <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
+          {% if images.count > 1 %}
+          <div class="carousel-indicators">
+            {% for image in images %}
+            <button
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide-to="{{ forloop.counter0 }}"
+              class="active"
+              aria-current="true"
+              aria-label="Slide {{ forloop.counter }}"
+            ></button>
+            {% endfor %}
           </div>
           {% endif %}
+
+          <div class="carousel-inner rounded-5 shadow-4-strong">
+            {% for image in images %}
+            <div
+              class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}"
+            >
+              <a class="postcard__img_link" href="{{image.image.url}}">
+                <img
+                  src="{{image.image.url}}"
+                  class="mx-auto d-block carousel-image {% if image.image.height > image.image.width %}portrait{% else %}landscape{% endif %}"
+                  alt="{{image.caption}}"
+                  onmouseover='hide_caption("{{image.id}}")'
+                  onmouseleave='show_caption("{{image.id}}")'
+                />
+              </a>
+              <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
+                <h5>{{image.caption}}</h5>
+              </div>
+            </div>
+            {% endfor %} {% if images.count > 1 %}
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-mdb-target="#img-gallery"
+              data-mdb-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            {% endif %}
+          </div>
         </div>
-      </section>
+        {% endif %}
+      </div>
       <!-- IMAGE GALLERY END -->
     </div>
     {% endif %}
-    <div class="col">
-
+    <div class="col details-col">
       <div class="row">
         <!-- TAGS START -->
         {% with tags=site.tags.all %} {% if tags.exists %}
-          <div class="tags d-flex justify-content-center">
-            {% for tag in tags %}
-              <div
-                class="text-center tag-item"
-                onmouseover="tag_hover(event)"
-                onmouseleave="tag_hover_end(event)"
-              >
-                <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
-              </div>
-            {% endfor %}
+        <div class="tags d-flex justify-content-center">
+          {% for tag in tags %}
+          <div
+            class="text-center tag-item"
+            onmouseover="tag_hover(event)"
+            onmouseleave="tag_hover_end(event)"
+          >
+            <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
           </div>
+          {% endfor %}
+        </div>
         {% endif %} {% endwith %}
         <!-- TAGS END -->
       </div>
-      
+
       <div class="row">
         <h5 class="text-center">
           <i class="fa-solid fa-location-dot" style="color: red"></i> &nbsp;
@@ -130,10 +134,10 @@
           >
         </h5>
       </div>
-      
-        <section class="container bg-dark rounded-5">
+
+      <section class="container bg-dark rounded-5">
         <p class="text-center text-break fs-3">{{site.description}}</p>
-        </section>
+      </section>
     </div>
   </div>
 </div>
@@ -231,7 +235,6 @@
   </a>
 </div>
 
-{% endblock %} 
-{% block bottom %}
+{% endblock %} {% block bottom %}
 <script defer src="{% static 'app/details.js' %}"></script>
 {% endblock %}

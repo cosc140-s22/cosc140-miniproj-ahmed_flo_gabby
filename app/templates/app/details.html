@@ -1,8 +1,10 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %} 
+{% load static %} 
+{% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'app/details.css' %}" />
-
 <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
-
+{% endblock %} 
+{% block content %}
 <div class="container">
   <div class="row">
     <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
@@ -188,7 +190,7 @@
                       src="https://avatars.dicebear.com/api/bottts/{{ review.user.username }}.svg"
                       class="rounded-circle comment-pic"
                       height="30"
-                      alt="Initials of username"
+                      alt="Robot"
                       loading="lazy"
                     /> </span
                   >{{ review.user.username }}
@@ -236,6 +238,7 @@
   </a>
 </div>
 
+{% endblock %} 
+{% block bottom %}
 <script defer src="{% static 'app/details.js' %}"></script>
-
 {% endblock %}

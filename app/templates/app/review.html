@@ -1,5 +1,9 @@
-{% extends "base.html" %} {% load static %} {% block content %}
-<link rel="stylesheet" href="{% static 'app/review.css' %}" />
+{% extends "base.html" %} 
+{% load static %} 
+{% block head %}
+  <link rel="stylesheet" href="{% static 'app/review.css' %}" />
+{% endblock %}
+{% block content %}
 <section class="container d-flex justify-content-center">
   <h1 class="text-ceter heading-1">New review for {{site.title}}</h1>
 </section>
@@ -40,5 +44,4 @@
     <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
   </form>
 </section>
-
 {% endblock %}

@@ -9,141 +9,150 @@
   <div class="row">
     <h1 class="text-center disaply-1" id="pageHeaderTitle">{{site.title}}</h1>
   </div>
-
-  <!-- AVERAGE RATINGS START -->
-  {% if site.avg_rating %}
-  <div class="d-flex justify-content-center tags avg-rating">
-    {% for rating in full_rating%}
-    <div
-      class="tag-item"
-      onmouseover="tag_hover(event)"
-      onmouseleave="tag_hover_end(event)"
-    >
-      <i class="fa-solid fa-star"></i>
-    </div>
-
-    {% endfor %} {% for rating in partial_rating%}
-    <div
-      class="tag-item"
-      onmouseover="tag_hover(event)"
-      onmouseleave="tag_hover_end(event)"
-    >
-      <i class="fa-solid fa-star-half"></i>
-    </div>
-    {% endfor %} {% for rating in empty_rating%}
-
-    <div
-      class="tag-item"
-      onmouseover="tag_hover(event)"
-      onmouseleave="tag_hover_end(event)"
-    >
-      <i class="fa-solid fa-star text-dark"></i>
-    </div>
-
-    {% endfor %}
-  </div>
-  {% endif %}
-  <!-- AVERAGE RATINGS END -->
-
-  <!-- TAGS START -->
-  {% with tags=site.tags.all %} {% if tags.exists %}
-  <div class="tags d-flex justify-content-center">
-    {% for tag in tags %}
-    <div
-      class="text-center tag-item"
-      onmouseover="tag_hover(event)"
-      onmouseleave="tag_hover_end(event)"
-    >
-      <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
-    </div>
-    {% endfor %}
-  </div>
-  {% endif %} {% endwith %}
-  <!-- TAGS END -->
-
+  
   <div class="row">
-    <h5 class="text-center">
-      <i class="fa-solid fa-location-dot" style="color: red"></i> &nbsp;
-      <a
-        class="link"
-        href="https://www.google.com/maps/place/{{site.location}}"
-        rel="noopener noreferrer"
-        target="_blank"
-        id="site-location"
-        >{{site.location}}</a
-      >
-    </h5>
-  </div>
-</div>
-
-<!-- IMAGE GALLERY START -->
-<section class="dark">
-  <div class="container py-4 h-75">
-    {% if images %}
-    <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
-      {% if images.count > 1 %}
-      <div class="carousel-indicators">
-        {% for image in images %}
-        <button
-          type="button"
-          data-mdb-target="#img-gallery"
-          data-mdb-slide-to="{{ forloop.counter0 }}"
-          class="active"
-          aria-current="true"
-          aria-label="Slide {{ forloop.counter }}"
-        ></button>
-        {% endfor %}
-      </div>
-      {% endif %}
-
-      <div class="carousel-inner rounded-5 shadow-4-strong">
-        {% for image in images %}
-        <div
-          class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}"
-        >
-          <a class="postcard__img_link" href="{{image.image.url}}">
-            <img
-              src="{{image.image.url}}"
-              class="mx-auto d-block carousel-image {% if image.image.height > image.image.width %}portrait{% else %}landscape{% endif %}"
-              alt="{{image.caption}}"
-              onmouseover='hide_caption("{{image.id}}")'
-              onmouseleave='show_caption("{{image.id}}")'
-            />
-          </a>
-          <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
-            <h5>{{image.caption}}</h5>
+    <div class="col">
+      <!-- IMAGE GALLERY START -->
+      <section class="dark">
+        <div class="container py-4 h-75">
+          {% if images %}
+          <div id="img-gallery" class="carousel slide" data-mdb-ride="carousel">
+            {% if images.count > 1 %}
+            <div class="carousel-indicators">
+              {% for image in images %}
+              <button
+                type="button"
+                data-mdb-target="#img-gallery"
+                data-mdb-slide-to="{{ forloop.counter0 }}"
+                class="active"
+                aria-current="true"
+                aria-label="Slide {{ forloop.counter }}"
+              ></button>
+              {% endfor %}
+            </div>
+            {% endif %}
+      
+            <div class="carousel-inner rounded-5 shadow-4-strong">
+              {% for image in images %}
+              <div
+                class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}"
+              >
+                <a class="postcard__img_link" href="{{image.image.url}}">
+                  <img
+                    src="{{image.image.url}}"
+                    class="mx-auto d-block carousel-image {% if image.image.height > image.image.width %}portrait{% else %}landscape{% endif %}"
+                    alt="{{image.caption}}"
+                    onmouseover='hide_caption("{{image.id}}")'
+                    onmouseleave='show_caption("{{image.id}}")'
+                  />
+                </a>
+                <div class="carousel-caption d-none d-md-block" id="{{image.id}}">
+                  <h5>{{image.caption}}</h5>
+                </div>
+              </div>
+              {% endfor %} {% if images.count > 1 %}
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-mdb-target="#img-gallery"
+                data-mdb-slide="prev"
+              >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-mdb-target="#img-gallery"
+                data-mdb-slide="next"
+              >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+              {% endif %}
+            </div>
           </div>
+          {% endif %}
         </div>
-        {% endfor %} {% if images.count > 1 %}
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-mdb-target="#img-gallery"
-          data-mdb-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-mdb-target="#img-gallery"
-          data-mdb-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-        {% endif %}
-      </div>
+      </section>
+      <!-- IMAGE GALLERY END -->
     </div>
-    {% endif %}
-  </div>
-</section>
-<!-- IMAGE GALLERY END -->
+    
+    <div class="col">
+      <div class="row">
+      
+        <!-- AVERAGE RATINGS START -->
+        {% if site.avg_rating %}
+          <div class="d-flex justify-content-center tags avg-rating">
+            {% for rating in full_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon red_dragon"></i>
+              </div>
+            {% endfor %} {% for rating in partial_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon red_dragon"></i>
+              </div>
+            {% endfor %} {% for rating in empty_rating%}
+              <div
+                class="tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <i class="fas fa-dragon empty_dragon"></i>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <!-- AVERAGE RATINGS END -->
+        
+      </div>
 
-<section class="container bg-dark rounded-5">
-  <p class="text-center text-break fs-3">{{site.description}}</p>
-</section>
+      <div class="row">
+        <!-- TAGS START -->
+        {% with tags=site.tags.all %} {% if tags.exists %}
+          <div class="tags d-flex justify-content-center">
+            {% for tag in tags %}
+              <div
+                class="text-center tag-item"
+                onmouseover="tag_hover(event)"
+                onmouseleave="tag_hover_end(event)"
+              >
+                <a href="{% url 'index' %}?tag={{tag.name}}"> {{tag.name}} </a>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %} {% endwith %}
+        <!-- TAGS END -->
+      </div>
+      
+      <div class="row">
+        <h5 class="text-center">
+          <i class="fa-solid fa-location-dot" style="color: red"></i> &nbsp;
+          <a
+            class="link"
+            href="https://www.google.com/maps/place/{{site.location}}"
+            rel="noopener noreferrer"
+            target="_blank"
+            id="site-location"
+            >{{site.location}}</a
+          >
+        </h5>
+      </div>
+      
+      <section class="container bg-dark rounded-5">
+        <p class="text-center text-break fs-3">{{site.description}}</p>
+      </section>
+</div>
+    </div>
+</div>
 
 <div class="container d-flex justify-content-center">
   <div class="lds" id="loader">

@@ -215,10 +215,12 @@ p.text {
     max-width: 3em;
   }
 }
-
+div.tag-item{
+	max-width:fit-content;
+}
 @media only screen and (min-width: 1000px) {
   .img-col {
-    min-width: 55vw;
-    max-width: 55vw;
+    min-width: 50vw;
+    max-width: 50vw;
   }
 }

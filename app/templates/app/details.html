@@ -106,10 +106,10 @@
       <div class="row">
         <!-- TAGS START -->
         {% with tags=site.tags.all %} {% if tags.exists %}
-        <div class="tags d-flex justify-content-center">
+        <div class="tags row justify-content-center d-flex">
           {% for tag in tags %}
           <div
-            class="text-center tag-item"
+            class="text-center tag-item col"
             onmouseover="tag_hover(event)"
             onmouseleave="tag_hover_end(event)"
           >

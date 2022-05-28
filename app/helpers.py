@@ -23,11 +23,6 @@ def update_state(params, session, search_sort_keys):
     
     for key in search_sort_keys:
         if params.get(key):
-            if(key == "search" and params.get(key).startswith("#")):
-                '''
-                    If the search term is a # it will be searched as a tag so don't save the search term in session
-                '''
-                continue
             session[key] = params.get(key)
 
 def get_post_code(address):

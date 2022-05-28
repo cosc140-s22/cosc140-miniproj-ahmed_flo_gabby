@@ -13,6 +13,7 @@ Ahmed, Flo, and Gabby
 - Login to leave your own reviews
 
 ### Cool Features
+
 - Suggestions on searchbar on home page
 - Hashtag suggestions if you press # on the search bar
 - Clickable tags. Click on a tag to only view items with that tag. Click it again to deselect it
@@ -34,7 +35,7 @@ Ahmed, Flo, and Gabby
 - Project creators [Ahmed](https://github.com/akamran2001), [Flo](https://github.com/florenceluo), and [Gabby](https://github.com/BobbyTie)
 - [CodePen](https://codepen.io/3psy0n/pen/LYpajmX) from [FreeFrontEnd.com](https://freefrontend.com/bootstrap-cards/) for CSS used in backgrounds and cards
 - [Bootstrap](https://getbootstrap.com/) and [Material Design Bootstrap](https://mdbootstrap.com/) for overall styling
-- [Dicebar Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
+- [Dicebear Avatars](https://avatars.dicebear.com/) API for free avatars on profile pictures
 - [Flaticon](https://www.flaticon.com/pattern) for Wales flag pattern SVG
 - [Nominatim](https://nominatim.openstreetmap.org) for geocoding locations
 - [OpenLayers](https://openlayers.org) for maps of locations
